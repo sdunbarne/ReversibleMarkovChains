@@ -1,0 +1,397 @@
+\documentclass[12pt]{article}
+
+\input{../../../../etc/macros}
+%\input{../../../../etc/mzlatex_macros}
+\input{../../../../etc/pdf_macros}
+
+\bibliographystyle{plain}
+
+\begin{document}
+
+\myheader
+\mytitle
+
+\hr
+
+\sectiontitle{Reversible Markov Chain}
+
+\hr
+
+\usefirefox
+
+% \hr
+
+% \visual{Study Tip}{../../../../CommonInformation/Lessons/studytip.png}
+% \section*{Study Tip}
+
+\hr
+
+\visual{Rating}{../../../../CommonInformation/Lessons/rating.png}
+\section*{Rating} %one of 
+% Everyone: contains no mathematics.
+% Student: contains scenes of mild algebra or calculus that may require guidance.
+Mathematically Mature: may contain mathematics beyond calculus with proofs.
+% Mathematicians Only: prolonged scenes of intense rigor.
+
+\hr
+
+\visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
+\section*{Section Starter Question}
+
+\hr
+
+\visual{Key Concepts}{../../../../CommonInformation/Lessons/keyconcepts.png}
+\section*{Key Concepts}
+
+\begin{enumerate}
+  \item 
+  \item 
+  \item 
+\end{enumerate}
+
+\hr
+
+\visual{Vocabulary}{../../../../CommonInformation/Lessons/vocabulary.png}
+\section*{Vocabulary}
+\begin{enumerate}
+  \item  The chain $X$ is \defn{reversible} if  $X$ is an irreducible and positive recurrent chain, started at its unique invariant
+distribution $\pi$. Recall that this means that $X_0$ has distribution
+$\pi$, and all other $X_n$ have distribution $\pi$ as well.
+Now suppose that, for every $n$, $X_1, X_2, \dots , X_n$ have the same joint distribution as the time-reversal
+$X_n, X_{n−1}, \dots , X_1$.
+\item  \defn{Kolmogorov's loop criterion} is
+  \[
+  P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{k-1} j_k} P_{j_k, j_0} =
+  P_{j_0 j_k} P_{j_k j_{k-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
+\]
+for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
+\end{enumerate}
+
+\hr
+
+\visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
+\section*{Mathematical Ideas}
+\subsection*{Reversibility}
+
+Assume $X$ is an irreducible and positive recurrent chain, started at its unique invariant
+distribution $\pi$. Recall that this means that $X_0$ has distribution
+$\pi$, and all other $X_n$ have distribution $\pi$ as well.
+Now suppose that, for every $n$, $X_1, X_2, \dots , X_n$ have the same joint distribution as the time-reversal
+$X_n, X_{n−1}, \dots , X_1$. Then the chain $X$ is \defn{reversible}\index{reversible}
+and its invariant distribution $\pi$ is also said to be reversible. This means that a recorded simulation of a reversible
+chain looks the same if the ``movie'' is run backwards.
+
+\begin{proposition}
+  If a Markov chain is started in $\pi$, then the time-reversed chain
+  has the Markov property.
+\end{proposition}
+
+\begin{proof}
+  \begin{align*}
+    & \Prob{X_k = i \given X_{k+1} = j, X_{k+2} = i_{k+2}, \dots, X_n
+      = i_n} \\
+    &\qquad = \frac{\Prob{X_k = i,   X_{k+1} = j, X_{k+2} = i_{k+2},
+      \dots, X_n}{ X_{k+1} = j, X_{k+2} = i_{k+2}, \dots, X_n} \\
+    &\qquad = \frac{\pi_i P_{ij}P_{j k+2}\codts P_{i_{n-1} i_n}}{\pi_j
+      P_{j k+2}\codts P_{i_{n-1} i_n}} \\
+    &\qquad = \frac{\pi_i P_{ij}}{\pi_j}
+  \end{align*}
+  which depends only on $i$ and $j$.
+\item FOr reversibility, the previous expression must be the same as
+  the forward transition probability $\Prob{X_{k+1} = i \given X_{j =
+      j}} = P_{ji}$
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Reversibility Condition]
+  A Markov chain with invariant distribution $\pi$ is reversible if
+  and only if
+  \[
+    \pi_i P_{ij} = \pi_j P_{ji}
+  \]
+  for all $i$ and $j$.
+\end{theorem}
+
+\begin{remark}
+  The condition
+  \[
+    \pi_i P_{ij} = \pi_j P_{ji}
+  \]
+  is called the \emph{detailed balance equation}.
+\end{remark}
+\begin{proof}
+  \begin{description}
+  \item[$\Rightarrow$] The condition follows immediately from the
+    proof of the Proposition.
+  \item[$\Leftarrow$] From the proposition, the time-reversed chain is
+    Markov.  If the original and the time-reversed chain both
+    start at the same invariant distribution and satisfy the
+    condition, then the transition probabilities are the same.  Then
+    by definition the chain is reversible. 
+  \end{description}
+\end{proof}
+
+\begin{remark}
+  The condition says
+  \[
+    \Prob{X_n =i, X_{n+1} = j} = \Prob{X_n =j, X_{n+1} = i}
+  \]
+  so the chain transitions from $i$ to $j$ as often as it transitions
+  from $j$ to $i$.
+\end{remark}
+
+\begin{remark}
+  If there exist $2$ states such that $P_{ij} > 0$ but $P_{ji} = 0$
+  then the detailed balance equation fails, since the limiting probabilities of all
+entries of an ergodic chain are nonzero. 
+  Then the chain is not reversible.
+\end{remark}
+
+\begin{theorem}
+  Assume the Markov chain is irreducible and positive recurrent and
+  there is a distribution $\pi$ satisfying the detailed balance equation
+  \[
+    \pi_i P_{ij} = \pi_j P_{ji}.
+  \]
+  \begin{enumerate}
+  \item The distribution $pi$ is the stationary distribution of the chain.
+  \item The chain is reversible.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Using the detailed balance equations
+  \[
+    \sum_j \pi_j P_{ij} = \sum_j \pi_i P_{ij} = \pi_i \sum_j P_{ij} =
+    \pi_i.
+  \]
+  Since the chains is irreducible and positive recurrent, then $\pi$
+  must be the unique stationary distribution.
+\end{proof}
+
+Say that a transition probability matrix is
+\emph{reversible}\index{reversible matrix} if the
+corresponding Markov chain is reversible.  From the definition an
+irreducible and positive recurrent Markov chain is reversible if and
+only if
+\[
+  P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{k-1} j_k} P_{j_k, j_0} =
+  P_{j_0 j_k} P_{j_k j_{k-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
+\]
+for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
+This is called \defn{Kolmogorov's loop criterion}.\index{Kolmogorov's loop criterion}
+In words, Kolmogorov’s loop criterion says that a Markov transition matrix is
+reversible if and only for every loop of distinct states, the forward loop probability product
+equals the backward loop probability product.
+
+For a two-state Markov chain Kolmogorov's loop criterion is always
+satisfied since $P_{12} P_{21} = P_{12} P_{21}$.  If the transition
+matrix is symmetric, then $P_{ij} = P_{ji}$ for all $i$, $j$, so
+Kolmogorov's loop criterion is always satisfied and the chain is
+reversible.  
+
+Kelly, 1978, [4] (Exercise 1.5.2) notes that
+if there is a state which can be accessed from every other state in exactly 1 step
+(i.e. a column of the transition matrix with no zero entries), then it is sufficient to
+check loops of only three states . However, it is possible that no
+such state exists.
+
+Usually loop checking involves much computational work.  The obvious
+reason is that he number of loops that need
+to be checked grows very quickly with $n$ where $n$ is the number of states. 
+The following Proposition counts the number of equations that must be checked in order to
+apply Kolmogorov’s loop criterion.
+
+\begin{proposition}
+For an $n$ state Markov chain, with $n \ge 3$, the number of
+equations that must be checked for reversibility by Kolmogorov’s method is
+\[
+  \sum_{\nu=3}^n \binom{n}{\nu} \frac{(\nu-1)!}{2}
+\]
+
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}
+  \item FOr a $3$-state Markov chain, only $1$ equation
+    \[
+      P_{12}P_{23}P_{31} = P_{31} P_{32} P_{21}
+    \]
+    needs checking, since no $2$ step loops need to be checked and any
+    other length $3$ loop over the same states results in the same
+    equation.
+  \item FOr $n=4$, we must check each loop of $3$ states and the each
+    loop of $4$ states.
+  \item For $3$ state loops, choose any $3$ of $4$ state and there is
+    one equation for each.  FOr the $4$ state loop, fix the starting
+    state.  Then there are $3!$ orders for the other states.  However,
+     the other side of the equation is just the reversed path, so
+     there are only $\frac{3!}{2}$ paths involving $4$ states with the
+     first state fixed.  In total, there are
+     \[
+       \binom{4}{3} + \binom{4}{4} \frac{(4-1)!}{2} = 7
+     \]
+     equations.
+   \item The previous argument easily generalizes to larger values of $n$.
+  \end{enumerate}
+\end{proof}
+
+\begin{table}
+  \centering
+  \begin{tabular}{ccccccccccc}
+    $n$& 1&2 &3 &4 &5 &6 & 7 & 8 & 9 & 10 \
+    equations & 0 & 0 & 1 & 7 & 37 & 197 & 1{,}172 & 8{,}018 & 62{,}814 & 556{,}014
+  \end{tabular}
+  \caption{Number of equation to be chacked for a Markov chain with
+    $n$ states.}
+  \label{tab:reversiblemarkovchains:loopeqns}
+\end{table}
+
+Next define operations to transform transition matrices in such a way as to
+preserve their reversibility status (either reversible or
+non-reversible). These
+transformations will be useful in creating new reversible Markov chains from existing
+ones, and for checking reversibility of Markov chains.
+A row multiplication operation on row $i$ of a Markov transition
+matrix is the multiplication of row $i$ by a positive constant that leaves the sum
+of the non diagonal elements at most $1$, followed by an adjustment to $p_{ii}$ to make
+the row sum exactly to $1$.
+A column multiplication operation on column $j$ of a Markov transition matrix is the multiplication of column $j$ by a positive constant of allowable
+size (so no row sums exceed 1) followed by adjustments to all diagonal entries to
+make every row sum exactly 1.
+
+\begin{lemma}
+  A Markov chain matrix P maintains its reversibility status after
+a row multiplication operation or a column multiplication operation.
+\end{lemma}
+
+\begin{proof}
+  Let the $i$th row of $P$ correspond to state $i$. The Kolmogorov
+  loop criterion states
+that $P$ is reversible if and only if for all loops of distinct states, the forward loop probability
+product equals the backward loop probability product. If a loop does not include
+state $i$, then a multiplication row operation on row $i$ has no effect on
+the forward
+and backward loop products. Otherwise, note that state $i$ appears in the first
+subscript of a forward loop probability if and only if it appears in the first subscript of a
+backward loop probability. So the row operation will have an identical effect on
+both sides of the loop product. A similar conclusion holds for column product
+operations.
+\end{proof}
+
+\begin{remark}
+  Let $P^{\star}$ be the matrix resulting from a row (or column) multipli-
+cation operation on $P$ , then the limiting probabilities for $P^{\star}$ in the lemma
+are generally different than the limiting probabilities for $P$. 
+\end{remark}
+
+If the matrix $P$ is an $n \times n$ probability transition matrix, then a sequence of at
+most $n −1$ row or column multiplication operations will be sufficient to determine
+whether or not $P$ is reversible or not.
+\begin{enumerate}
+\item 
+\item Pick two nonzero symmetric positions in $P$, say $P_{i_1,i_2}$ and $P_{i_2,i_1}$. Let $S_1 =
+\set{i_1, i_2}$. If $P_{i_1,i_2} = P_{i_2,i_1}$, move to the next step. Otherwise, assume $P_{i_1,i_2 }< P_{i_2,i_1}$.
+Multiply row $i_2$ by $P_{i_1,i_2}/P_{i_2,i_1}$ and adjust $P_{i_2,i_2}$ to make the row sum to $1$. If
+$P_{i_1,i_2} > P_{i_2,i_1}$, multiply column $i_2$ by $P_{i_2,i_1}/P_{i_1,i_2}$ and adjust all diagonal entries so
+that the rows sum to $1$. The new matrix $P^{\star}$ will now have $P_{i_1,i_2} = P_{}
+i_2,i_1}^{\star}$.
+\item Choose another state $i_3$ which has nonzero transition probabilities with a state
+in $S_1$. Make the appropriate row or column multiplication operation on row or
+column $i_3$. Set $S_2 = \set{i_1, i_2, i_3}$.
+\item  Repeat the previous with a new state until there are no states left to add. After $n −1$
+steps we have $S_n = \set{i_1, \dots, i_n}. Let $P$^{\star}$ be the
+final matrix.
+\end{enumerate}
+
+
+
+\subsection*{Examples}
+
+\visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
+\section*{Section Ending Answer}
+
+\subsection*{Sources}
+This section is adapted from: 
+% https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf
+% http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf
+% https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf
+% https://digitalcommons.lsu.edu/cgi/viewcontent.cgi?article=1472&context=cosa
+
+\nocite{}
+\nocite{}
+
+\hr
+
+\visual{Algorithms, Scripts, Simulations}{../../../../CommonInformation/Lessons/computer.png}
+\section*{Algorithms, Scripts, Simulations}
+
+\subsection*{Algorithm}
+
+\subsection*{Scripts}
+
+\input{ _scripts}
+
+\hr
+
+\visual{Problems to Work}{../../../../CommonInformation/Lessons/solveproblems.png}
+\section*{Problems to Work for Understanding}
+\renewcommand{\theexerciseseries}{}
+\renewcommand{\theexercise}{\arabic{exercise}}
+
+\begin{exercise}
+  
+\end{exercise}
+\begin{solution}
+  
+\end{solution}
+\begin{exercise}
+  \begin{enumerate}[label=(\alpha*)]
+  \item 
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\alpha*)]
+  \item 
+  \end{enumerate}
+\end{solution}
+
+\hr
+
+\visual{Books}{../../../../CommonInformation/Lessons/books.png}
+\section*{Reading Suggestion:}
+
+\bibliography{../../../../CommonInformation/bibliography}
+
+%   \begin{enumerate}
+%     \item 
+%     \item 
+%     \item 
+%   \end{enumerate}
+
+\hr
+
+\visual{Links}{../../../../CommonInformation/Lessons/chainlink.png}
+\section*{Outside Readings and Links:}
+\begin{enumerate}
+  \item  
+  \item  
+  \item  
+  \item 
+\end{enumerate}
+
+\section*{\solutionsname}
+\loadSolutions
+
+\hr
+
+\mydisclaim \myfooter
+
+Last modified:  \flastmod
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
