@@ -67,6 +67,19 @@ $X_n, X_{n−1}, \dots , X_1$.
 for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
 \end{enumerate}
 
+\section*{Notation}
+\begin{enumerate}
+\item $X$, $X_0$, $X_n$ -- Markov chain, starting state, general step
+  of the chain.
+\item $k$ -- Number of states in the Markov chain.
+\item $\pi$, $\pi_i$ -- Stationary distribution and general element of
+  the stationary distribution.
+\item $i$, $j$, $i_{\ell}$ etc. -- arbitrary states of the Markov
+  chain.
+\item $P$, $P_{ij}$ -- Probability transition matrix and general
+  element of probability transition matrix.
+\item $P^{\star}$ -- the matrix resulting from a row (or column) multiplication operation on $P$.
+\end{enumerate}
 \hr
 
 \visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
@@ -88,17 +101,17 @@ chain looks the same if the ``movie'' is run backwards.
 
 \begin{proof}
   \begin{align*}
-    & \Prob{X_k = i \given X_{k+1} = j, X_{k+2} = i_{k+2}, \dots, X_n
+    & \Prob{X_\ell = i \given X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2}, \dots, X_n
       = i_n} \\
-    &\qquad = \frac{\Prob{X_k = i,   X_{k+1} = j, X_{k+2} = i_{k+2},
-      \dots, X_n}{ X_{k+1} = j, X_{k+2} = i_{k+2}, \dots, X_n} \\
-    &\qquad = \frac{\pi_i P_{ij}P_{j k+2}\codts P_{i_{n-1} i_n}}{\pi_j
-      P_{j k+2}\codts P_{i_{n-1} i_n}} \\
+    &\qquad = \frac{\Prob{X_\ell = i,   X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2},
+      \dots, X_n}{ X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2}, \dots, X_n} \\
+    &\qquad = \frac{\pi_i P_{ij}P_{j \ell+2}\codts P_{i_{n-1} i_n}}{\pi_j
+      P_{j \ell+2}\codts P_{i_{n-1} i_n}} \\
     &\qquad = \frac{\pi_i P_{ij}}{\pi_j}
   \end{align*}
   which depends only on $i$ and $j$.
 \item FOr reversibility, the previous expression must be the same as
-  the forward transition probability $\Prob{X_{k+1} = i \given X_{j =
+  the forward transition probability $\Prob{X_{\ell+1} = i \given X_{j =
       j}} = P_{ji}$
   \end{enumerate}
 \end{proof}
@@ -175,10 +188,10 @@ corresponding Markov chain is reversible.  From the definition an
 irreducible and positive recurrent Markov chain is reversible if and
 only if
 \[
-  P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{k-1} j_k} P_{j_k, j_0} =
-  P_{j_0 j_k} P_{j_k j_{k-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
+  P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{\ell-1} j_\ell} P_{j_\ell, j_0} =
+  P_{j_0 j_\ell} P_{j_\ell j_{\ell-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
 \]
-for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
+for every finite sequence of distinct state $j_0, j_1, \dots, j_\ell$.
 This is called \defn{Kolmogorov's loop criterion}.\index{Kolmogorov's loop criterion}
 In words, Kolmogorov’s loop criterion says that a Markov transition matrix is
 reversible if and only for every loop of distinct states, the forward loop probability product
@@ -203,12 +216,11 @@ The following Proposition counts the number of equations that must be checked in
 apply Kolmogorov’s loop criterion.
 
 \begin{proposition}
-For an $n$ state Markov chain, with $n \ge 3$, the number of
+For an $k$ state Markov chain, with $k \ge 3$, the number of
 equations that must be checked for reversibility by Kolmogorov’s method is
 \[
   \sum_{\nu=3}^n \binom{n}{\nu} \frac{(\nu-1)!}{2}
 \]
-
 \end{proposition}
 
 \begin{proof}
@@ -239,7 +251,7 @@ equations that must be checked for reversibility by Kolmogorov’s method is
 \begin{table}
   \centering
   \begin{tabular}{ccccccccccc}
-    $n$& 1&2 &3 &4 &5 &6 & 7 & 8 & 9 & 10 \
+    $k$& 1&2 &3 &4 &5 &6 & 7 & 8 & 9 & 10 \
     equations & 0 & 0 & 1 & 7 & 37 & 197 & 1{,}172 & 8{,}018 & 62{,}814 & 556{,}014
   \end{tabular}
   \caption{Number of equation to be chacked for a Markov chain with
@@ -280,8 +292,7 @@ operations.
 \end{proof}
 
 \begin{remark}
-  Let $P^{\star}$ be the matrix resulting from a row (or column) multipli-
-cation operation on $P$ , then the limiting probabilities for $P^{\star}$ in the lemma
+  Let $P^{\star}$ be the matrix resulting from a row (or column) multiplication operation on $P$, then the limiting probabilities for $P^{\star}$ in the lemma
 are generally different than the limiting probabilities for $P$. 
 \end{remark}
 
@@ -294,8 +305,7 @@ whether or not $P$ is reversible or not.
 \set{i_1, i_2}$. If $P_{i_1,i_2} = P_{i_2,i_1}$, move to the next step. Otherwise, assume $P_{i_1,i_2 }< P_{i_2,i_1}$.
 Multiply row $i_2$ by $P_{i_1,i_2}/P_{i_2,i_1}$ and adjust $P_{i_2,i_2}$ to make the row sum to $1$. If
 $P_{i_1,i_2} > P_{i_2,i_1}$, multiply column $i_2$ by $P_{i_2,i_1}/P_{i_1,i_2}$ and adjust all diagonal entries so
-that the rows sum to $1$. The new matrix $P^{\star}$ will now have $P_{i_1,i_2} = P_{}
-i_2,i_1}^{\star}$.
+that the rows sum to $1$. The new matrix $P^{\star}$ will now have $P_{i_1,i_2} = P_{i_2,i_1}^{\star}$.
 \item Choose another state $i_3$ which has nonzero transition probabilities with a state
 in $S_1$. Make the appropriate row or column multiplication operation on row or
 column $i_3$. Set $S_2 = \set{i_1, i_2, i_3}$.
@@ -304,19 +314,135 @@ steps we have $S_n = \set{i_1, \dots, i_n}. Let $P$^{\star}$ be the
 final matrix.
 \end{enumerate}
 
+\begin{theorem}
+  Let $P$ be a $k \times k$ transition matrix to which the Algorithm
+  is applied, resulting in $P^{\star}$.  Then $P$ is reversible if and
+  only if $\P^{\star}$ is symmetric.
+\end{theorem}
 
+\begin{proof}
+  \begin{enumerate}
+  \item $\Rightarrow$
+    \begin{enumerate}
+    \item Assume $P$ is reversible, then by the lemma, $P^{\star}$ is
+      reversible.
+    \item Let $\phi = (\phi_1, \dots, \phi_k)$ be the stationary
+      distribution for $P^{\star}$.
+    \item Note that $P^{\star}$ is formed so that $P_{ij}^{\star} =
+      P_{ij}^{\star}$ for the set of transitions $(i,j)$ which
+      includes each of the states $1, \dots, k$ among the $(i,j)$
+      pairs.  Let $(i,j)$ be one of the transition pairs in the
+      collection.
+    \item Since $P^{\star}$ is reversible, the detailed balance
+      equations  $\phi_i P_{ij}^{\star} = \phi_j
+      P_{ji}^{\star}$ must hold for the pair $(i,j)$.
+    \item But all the states $1, \dots, k$ appear in the set of
+      transitions somewhere in the collection, so $\phi_1 = \phi_2 =
+      \cdots = \phi_k$.
+    \item Now take an arbitrary pair $(i,j)$.  Since $P^{\star}$ is
+      reversibile, the detailed balance holds for all $i,j$.  Hence
+      $\phi_i P_{ij}^{\star} = \phi_j P_{ji}^{\star}$ for all $i,j$.
+    \item Since $\phi_i = \phi_j$, then $P_{ij}^{\star} =
+      P_{ji}^{\star}$, so $P^{\star}$ is symmetric.
+    \end{enumerate}
+  \item $\Leftarrow$
 
-\subsection*{Examples}
+    If $P^{\star}$ is symmetric , then $P^{\star}$ is reversible, so
+    the by the lemma $P$ is reversible.
+  \end{enumerate}
+\end{proof}
+
+\begin{remark}
+  The Algorithm chooses the smaller of $2$ matrix entries in order to
+  modify the matrix $P$.  Also corrections are made to the diagonal
+  elements in order to ensure the rows sum to $1$.  In fact, this is
+  not necessary and the transformed matrix $P^{\star}$ no longer needs
+  to be a transition matrix.  Examining the proof shows that that
+  important issue is whether $P^{\star}$ is symmetric or not.
+\end{remark}
+
+\begin{example}
+  Let
+  \[
+    P =
+    \begin{pmatrix}
+      17/40 & 0 & 3/40 & 1/2 \\
+      0     & 11/20 & 1/4 & 1/5 \\
+      3/10  & 1/4   & 9/20 & 0 \\
+      1/2   & 1/20  & 0    & 9/20
+    \end{pmatrix}.
+  \]
+  To check for reversibility, transform $P$ by column or row
+  operations.  First, the zeroes of $P$ are symmetric, and $P_{14} =
+  P_{41}}$, so that symmetry for states $\set{1,4}$ already exists.
+Now make the $(1,3)$ entry match the $(3,1)$ entry without losing the
+$(1,4)$ and $(4,1)$ symmetry.  It is possible to multiply column $3$
+by $(3/10)/(3/40) = 4$ of by $(3/40)/(3/10) = 1/4$.   Make the latter
+choice to obtain a new matrix with row $3$ equal to $(3/40, 1/16,
+9/80, 0)$.  This is not a transition probability matrix because the
+row no longer sums to $1$, so change the diagonal element at $(3,3)$
+to $1 - 3/40 - 1/16 = 69/80$.  Now the transformed matrix is
+  \[
+    P^{(1)} =
+    \begin{pmatrix}
+      17/40 & 0 & 3/40 & 1/2 \\
+      0     & 11/20 & 1/4 & 1/5 \\
+      3/40  & 1/16   & 69/80 & 0 \\
+      1/2   & 1/20  & 0    & 9/20
+    \end{pmatrix}.
+  \]
+Now the set of included states is $S = \set{1,4,3}$, so state $2$
+needs to be included.  To preserve the values in $(1,4)$ and $(4,1)$,
+and $(1,3)$ and $(3,1)$, only row $2$ or column $2$ can be changed.
+CHoose to multiply column $2$ by $4$ to make entries $(4,2)$ and
+$(2,4)$ equal.  The result is
+  \[
+    P^{(2)} =
+    \begin{pmatrix}
+      17/40 & 0 & 3/40 & 1/2 \\
+      0     & 11/5 & 1/4 & 1/5 \\
+      3/40  & 1/4   & 69/80 & 0 \\
+      1/2   & 1/5  & 0    & 9/20
+    \end{pmatrix}.
+  \]
+Adjust the entries in the diagonal positions in rows $2$, $3$, $4$ to
+make the matrix a transition probability matrix
+  \[
+    P^{(\star)} =
+    \begin{pmatrix}
+      17/40 & 0 & 3/40 & 1/2 \\
+      0     & 11/20 & 1/4 & 1/5 \\
+      3/40  & 1/16   & 27/40 & 0 \\
+      1/2   & 1/5  & 0    & 3/10
+    \end{pmatrix}.
+  \]
+Now $P$ is reversible if and only if $P^{\star}$ is reversible.  But
+$P^{\star}$ is symmetric so it is automatically reversible.  Using the
+detailed balance equations makes it easy to compute the stationary
+distribution of $P$, see the exercises.
+
+\end{example}
+\subsection*{Examples of Reversible Chains}
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
 
 \subsection*{Sources}
-This section is adapted from: 
-% https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf
-% http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf
+
+The definition of reversibility, the Proposition,  the
+Reversibility Condition Theorem are adapted from
+\link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
+
+Remarks surrounding the Reversibility Condition Theorem are
+adapted from \link{% https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf}{Chen}.
+  
+% \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{}
 % https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf
-% https://digitalcommons.lsu.edu/cgi/viewcontent.cgi?article=1472&context=cosa
+
+Identifying reversibility with the Kolmogorov loop condition is
+adapted from
+\link{https://digitalcommons.lsu.edu/cgi/viewcontent.cgi?article=1472&context=cosa}{Brill
+et al.}, \cite{brill18}.
 
 \nocite{}
 \nocite{}
@@ -340,11 +466,25 @@ This section is adapted from:
 \renewcommand{\theexercise}{\arabic{exercise}}
 
 \begin{exercise}
-  
+  Compute the stationary distribution for
+  \[
+    P =
+    \begin{pmatrix}
+      17/40 & 0 & 3/40 & 1/2 \\
+      0     & 11/20 & 1/4 & 1/5 \\
+      3/10  & 1/4   & 9/20 & 0 \\
+      1/2   & 1/20  & 0    & 9/20
+    \end{pmatrix}
+  \]
+  using the detailed balance equations.
 \end{exercise}
 \begin{solution}
-  
+  Use the detailed balance to obtain $\pi_1P_{14} = \pi_4P_{41}$ and $\pi_1P_{13} = \pi_3P_{31}$
+and $\pi_3P_{32} = \pi_2P_{23}$ so $\pi_1(1/2) = \pi_4(1/2)$ and $\pi_1(3/40) = \pi_3(3/10)$ and $\pi_3(1/4) = \pi_2(1/4)$.
+Hence $\pi_2 = \pi_3 = 3\pi_1 = 3\pi_4$. Since the sum of the probabilities is $1$,
+$\pi_1 = \pi_4 = 3/8$ and $\pi_2 = \pi_3 = 1/8$.
 \end{solution}
+
 \begin{exercise}
   \begin{enumerate}[label=(\alpha*)]
   \item 
