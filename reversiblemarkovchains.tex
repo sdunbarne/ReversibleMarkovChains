@@ -116,13 +116,20 @@ chain looks the same if the ``movie'' is run backwards.
   \end{enumerate}
 \end{proof}
 
+\begin{remark}
+  The definition is inconvenient because it requires the
+stationary distribution $\pi$ in advance  to check if the chain is time-reversible.  The
+following theorem  avoids having to know $\pi$ in advance and can even
+help find $\pi$.
+
+\end{remark}
 \begin{theorem}[Reversibility Condition]
   A Markov chain with invariant distribution $\pi$ is reversible if
-  and only if
+  and only if there is a probability distribution $\pi$ such that
   \[
     \pi_i P_{ij} = \pi_j P_{ji}
   \]
-  for all $i$ and $j$.
+  for all $i$ and $j$ and $\pi$ is the unique stationary distribution.
 \end{theorem}
 
 \begin{remark}
@@ -424,6 +431,114 @@ distribution of $P$, see the exercises.
 \end{example}
 \subsection*{Examples of Reversible Chains}
 
+\subsubsection*{Negative Drift Random Walk on the Non-negative
+  integers}
+
+Consider a negative drift simple
+random walk, restricted to be non-negative by a reflecting boundary.
+That is,  $P_{01} = 1$ and otherwise $P_{i,i+1} = p <
+0.5$, $P_{i,i−1} = 1 − p > 0.5$.  
+The time reversibility equations are
+\begin{align*}
+  \pi_0 &= (1-p) \pi \\
+  p \pi_{i} &= (1-p) \pi_{i+1}
+\end{align*}
+so $\pi_1 = \pi_0/(1-p)$, $\pi_2 = p\pi_0/(1-p)^{2}$ and in general
+$\pi_1 = p^{n-1} \pi_0/(1-p)^n$.  Since $\sum_{nu} \pi_{\nu} = 1$,
+\[
+  \pi \left( 1 + \frac{1}{1-p} \sum_{\nu} \left( \frac{p}{1-p} )^{\nu}
+    \right) = 1
+  \]
+  Since $\frac{p}{1-p} < 1$ the geometric series converges and
+  \begin{align*}
+    \pi_0 &= \frac{1}{2}\cdot \frac{1-2p}{1-p} \\
+    \pi_n &= \left( \frac{1}{2} - p \right) \left(  \frac{p}}{(1-p}
+            \right)^2, n \ge 1.
+  \end{align*}
+  
+\subsubsection*{Random Walks on Weighted Graphs}
+ A \emph{random walks on a weighted graph}\index{random walks on a weighted graph}
+  is a general and common example of a reversible Markov
+  chain. Assume that every undirected edge between vertices $i$ and $j$
+in a complete graph has a weight $w_{ij} = w_{ji}$.  The Markov chain
+is irreducible because the graph with edge weights greater than $0$ is complete. Edges with zero
+weight are not.  When at $i$, the walker goes to $j$ with probability proportional
+to $w_{ij}$ , so that
+\[
+  P_{ij} = \frac{w_{ij}}{\sum_{\nu} w_{i\nu}}.
+\]
+Let
+\[
+  s = sum_{i,j} w_{ij}
+\]
+be the sum of all weights and let
+\[
+  \pi_i = \frac{\sum_{\nu} w_{i\nu}}{s}.
+\]
+The  probability transition matrix is reversible because
+\[
+  \pi_i P_{ij} = \frac{\sum_{\nu} w_{i\nu}}{s} \cdot
+  \frac{w_{ij}}{\sum_{\nu} w_{i\nu}} = \frac{w_{ij}}{s} =
+  \frac{w_{ji}}{s} = \frac{\sum_{\nu} w_{j\nu}}{s} \cdot
+  \frac{w_{ji}}{\sum_{\nu} w_{j\nu}} = \pi_j P_{ji}.
+\]
+
+It is not necessary to forbid self-edges, some edges $w_{ii}$ may be
+nonzero.  However, $w_{ii}$ appears only once in the sum $s$, while
+the value $w_{ij}$ appears twice, once each for $i$ and $j$.
+
+In the simple case with no self-edges and all nonzero weights equal
+to $1$, the invariant distribution is
+\[
+  \pi_i = \frac{\operatorname{degree}(i)}{2 \cdot (\text{number of
+      edges})}.
+\]
+
+
+\subsubsection*{Ehrenfest Urn Model}
+
+The physicist P. Ehrenfest proposed the following model for statistical
+mechanics and kinetic theory.  The motivation is diffusion through a
+membrane.  Two urns labeled \( A \) and \( B \) contain a total of \( N \)
+balls.  In the \defn{Ehrenfest urn model} a%
+\index{Ehrenfest urn model}
+\index{Markov chain ! Ehrenfest urn model}
+\index{urn model}
+ball is selected at random with all selections equally likely, and moved
+from the urn it is in to the other urn.  The state at each time is the
+number of balls in the urn \( A \), from \( 0 \) to \( N \).  Then the
+transition probability matrix is
+\[
+    P =
+    \begin{pmatrix}
+        0 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+        \frac{1}{N} & 0 & 1-\frac{1}{N} & 0 & \cdots & 0 & 0 \\
+        0 & \frac{2}{N} & 0 & 1-\frac{2}{N} & \cdots & 0 & 0 \\
+        \vdots & \vdots & \vdots & \vdots & \ddots& \vdots & \vdots \\
+        0 & 0 & 0 & 0 & \cdots & 0 & 1/N \\
+        0 & 0 & 0 & 0 & \cdots & 1 & 0 \\
+    \end{pmatrix}
+    .
+\] The balls fluctuate between the two containers with a drift from the
+one with the larger number of balls to the one with the smaller numbers.
+
+A stationary distribution for this Markov chain has entry \( \pi_i =
+\binom{N}{i}/2^N \).   This is the binomial distribution on \( N \),
+so that for large \( N \), this can be approximated with the normal
+distribution.  This conclusion is plausible given the physical origin of
+the Markov chain as a model for diffusion. This Markov chain is
+ergodic.  All states are accessible and all states communicate.  The
+chain is periodic with period \( 2 \) so it is not regular.
+
+To show that the Markov chain is reversible requires
+\begin{align*}
+  \pi_0 P_{01} \= \pi_1 P_{10}, \\
+  \pi_i P_{i,i+1} \= \pi_{i+1} P_{i+1,i}, \\
+  \pi_i P_{i,i-1} \= \pi_{i-1} P_{i-1,i}, \\
+  \pi_N P_{N,N-11} \= \pi_{N-1} P_{N-1,N}. \\
+\end{align*}
+See the exercises.
+
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
 
@@ -434,15 +549,22 @@ Reversibility Condition Theorem are adapted from
 \link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
 
 Remarks surrounding the Reversibility Condition Theorem are
-adapted from \link{% https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf}{Chen}.
-  
-% \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{}
-% https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf
+adapted from \link{https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf}{Chen} and
+  \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{Sigman}.
+
 
 Identifying reversibility with the Kolmogorov loop condition is
 adapted from
 \link{https://digitalcommons.lsu.edu/cgi/viewcontent.cgi?article=1472&context=cosa}{Brill
 et al.}, \cite{brill18}.
+
+The example of the negative drift random walk on the non-negative integers is adapted
+from 
+  \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{Sigman}.
+
+The example of the random walk on a connected graph is adapted from 
+\link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
+
 
 \nocite{}
 \nocite{}
