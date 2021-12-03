@@ -1,15 +1,19 @@
+%%% -*-LaTeX-*-
+%%% reversiblemarkovchains.tex.orig
+%%% Prettyprinted by texpretty lex version 0.02 [21-May-2001]
+%%% on Fri Dec  3 09:11:18 2021
+%%% for Steven R. Dunbar (sdunbar@family-desktop)
+
 \documentclass[12pt]{article}
 
-\input{../../../../etc/macros}
-%\input{../../../../etc/mzlatex_macros}
+\input{../../../../etc/macros} %\input{../../../../etc/mzlatex_macros}
 \input{../../../../etc/pdf_macros}
 
 \bibliographystyle{plain}
 
 \begin{document}
 
-\myheader
-\mytitle
+\myheader \mytitle
 
 \hr
 
@@ -27,11 +31,11 @@
 \hr
 
 \visual{Rating}{../../../../CommonInformation/Lessons/rating.png}
-\section*{Rating} %one of 
+\section*{Rating} %one of
 % Everyone: contains no mathematics.
 % Student: contains scenes of mild algebra or calculus that may require guidance.
-Mathematically Mature: may contain mathematics beyond calculus with proofs.
-% Mathematicians Only: prolonged scenes of intense rigor.
+Mathematically Mature:  may contain mathematics beyond calculus with
+proofs. % Mathematicians Only: prolonged scenes of intense rigor.
 
 \hr
 
@@ -49,66 +53,81 @@ and observing the movement of the ball between the urns?
 \section*{Key Concepts}
 
 \begin{enumerate}
-  \item   A Markov chain with invariant distribution $\pi$ is reversible if
-  and only if there is a probability distribution $\pi$ such that
-  \[
-    \pi_i P_{ij} = \pi_j P_{ji}
-  \]
-  for all $i$ and $j$ and $\pi$ is the unique stationary distribution.
-  \item   The condition says
-  \[
-    \Prob{X_n =i, X_{n+1} = j} = \Prob{X_n =j, X_{n+1} = i}
-  \]
-  so the chain transitions from $i$ to $j$ as often as it transitions
-  from $j$ to $i$.
-  \item   Assume the Markov chain is irreducible and positive recurrent and
-  probability distribution $\pi$ satisfies the detailed balance equation
-  \[
-    \pi_i P_{ij} = \pi_j P_{ji}.
-  \]
-  Then the distribution $pi$ is the stationary distribution of the chain
-  and the chain is reversible.
-\item   Let $P$ be a $k \times k$ transition matrix to which an
-  Algorithm of row and column operations
-  is applied, resulting in $P^{\star}$.  Then $P$ is reversible if and
-  only if $\P^{\star}$ is symmetric.
-  \end{enumerate}
+    \item
+        A Markov chain with invariant distribution \( \pi \) is
+        reversible if and only if there is a probability distribution \(
+        \pi \) such that
+        \[
+            \pi_i P_{ij} = \pi_j P_{ji}
+        \] for all \( i \) and \( j \) and \( \pi \) is the unique
+        stationary distribution.
+    \item
+        The condition says
+        \[
+            \Prob{X_n =i, X_{n+1} = j} = \Prob{X_n =j, X_{n+1} = i}
+        \] so the chain transitions from \( i \) to \( j \) as often as
+        it transitions from \( j \) to \( i \).
+    \item
+        Assume the Markov chain is irreducible and positive recurrent
+        and probability distribution \( \pi \) satisfies the detailed
+        balance equation
+        \[
+            \pi_i P_{ij} = \pi_j P_{ji}.
+        \] Then the distribution \( pi \) is the stationary distribution
+        of the chain and the chain is reversible.
+    \item
+        Let \( P \) be a \( k \times k \) transition matrix to which an
+        Algorithm of row and column operations is applied, resulting in \(
+        P^{\star} \).  Then \( P \) is reversible if and only if \( \P^{\star}
+        \) is symmetric.
+\end{enumerate}
 
 \hr
 
 \visual{Vocabulary}{../../../../CommonInformation/Lessons/vocabulary.png}
 \section*{Vocabulary}
 \begin{enumerate}
-  \item  The chain $X$ is \defn{reversible} if  $X$ is an irreducible and positive recurrent chain, started at its unique invariant
-distribution $\pi$.  This means  $X_0$ has distribution
-$\pi$, and all other $X_n$ have distribution $\pi$ as well.
-Now suppose that for every $n$, $X_1, X_2, \dots , X_n$ have the same joint distribution as the time-reversal
-$X_n, X_{n-1}, \dots , X_1$.
-\item   The condition
-  \[
-    \pi_i P_{ij} = \pi_j P_{ji}
-  \]
-  is the \defn{detailed balance equation}.
-\item  \defn{Kolmogorov's loop criterion} is
-  \[
-  P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{k-1} j_k} P_{j_k, j_0} =
-  P_{j_0 j_k} P_{j_k j_{k-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
-\]
-for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
+    \item
+        The chain \( X \) is \defn{reversible} if \( X \) is an
+        irreducible and positive recurrent chain, started at its unique
+        invariant distribution \( \pi \).  This means \( X_0 \) has
+        distribution \( \pi \), and all other \( X_n \) have
+        distribution \( \pi \) as well. Now suppose that for every \( n \),
+        \( X_1, X_2, \dots , X_n \) have the same joint distribution as
+        the time-reversal \( X_n, X_{n-1}, \dots , X_1 \).
+    \item
+        The condition
+        \[
+            \pi_i P_{ij} = \pi_j P_{ji}
+        \] is the \defn{detailed balance equation}.
+    \item
+        \defn{Kolmogorov's loop criterion} is
+        \[
+            P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{k-1} j_k} P_{j_k, j_0}
+            = P_{j_0 j_k} P_{j_k j_{k-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
+        \] for every finite sequence of distinct state \( j_0, j_1,
+        \dots, j_k \).
 \end{enumerate}
 
 \section*{Notation}
 \begin{enumerate}
-\item $X$, $X_0$, $X_n$ -- Markov chain, starting state, general step
-  of the chain.
-\item $k$ -- Number of states in the Markov chain.
-\item $\pi$, $\pi_i$ -- Stationary distribution and general element of
-  the stationary distribution.
-\item $i$, $j$, $i_{\ell}$ etc. -- arbitrary states of the Markov
-  chain.
-\item $P$, $P_{ij}$ -- Probability transition matrix and general
-  element of probability transition matrix.
-\item $P^{\star}$ -- the matrix resulting from a row (or column) multiplication operation on $P$.
+    \item
+        \( X \), \( X_0 \), \( X_n \) -- Markov chain, starting state,
+        general step of the chain.
+    \item
+        \( k \) -- Number of states in the Markov chain.
+    \item
+        \( \pi \), \( \pi_i \) -- Stationary distribution and general
+        element of the stationary distribution.
+    \item
+        \( i \), \( j \), \( i_{\ell} \) etc.  -- arbitrary states of
+        the Markov chain.
+    \item
+        \( P \), \( P_{ij} \) -- Probability transition matrix and
+        general element of probability transition matrix.
+    \item
+        \( P^{\star} \) -- the matrix resulting from a row (or column)
+        multiplication operation on \( P \).
 \end{enumerate}
 \hr
 
@@ -118,413 +137,449 @@ for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
 
 \subsubsection*{Detailed Balance Equations}
 
-Assume $X$ is an irreducible and positive recurrent chain, started at its unique invariant
-distribution $\pi$.  This means $X_0$ has distribution
-$\pi$, and all successive $X_n$ have distribution $\pi$ as well.
-Now suppose that, for every $n$, $X_1, X_2, \dots , X_n$ have the same joint distribution as the time-reversal
-$X_n, X_{n-1}, \dots , X_1$. Then the chain $X$ is
-\defn{reversible}\index{reversible}\index{Markov chain!reversible}
-and its invariant distribution $\pi$ is also said to be reversible. This means  a recorded simulation of a reversible
-chain looks the same if the ``video'' is run backwards.
+Assume \( X \) is an irreducible and positive recurrent chain, started
+at its unique invariant distribution \( \pi \).  This means \( X_0 \)
+has distribution \( \pi \), and all successive \( X_n \) have
+distribution \( \pi \) as well. Now suppose that, for every \( n \), \(
+X_1, X_2, \dots , X_n \) have the same joint distribution as the
+time-reversal \( X_n, X_{n-1}, \dots , X_1 \).  Then the chain \( X \)
+is \defn{reversible}%
+\index{reversible}%
+\index{Markov chain!reversible}
+and its invariant distribution \( \pi \) is also said to be reversible.
+This means a recorded simulation of a reversible chain looks the same if
+the ``video'' is run backwards.
 
 \begin{proposition}
-  If a Markov chain is started in $\pi$, then the time-reversed chain
-  has the Markov property.
+    If a Markov chain is started in \( \pi \), then the time-reversed
+    chain has the Markov property.
 \end{proposition}
 
 \begin{proof}
-  \begin{align*}
-    & \Prob{X_\ell = i \given X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2}, \dots, X_n
-      = i_n} \\
-    &\qquad = \frac{\Prob{X_\ell = i,   X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2},
-      \dots, X_n}}{X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2}, \dots, X_n} \\
-    &\qquad = \frac{\pi_i P_{ij}P_{j \ell+2}\codts P_{i_{n-1} i_n}}{\pi_j
-      P_{j \ell+2}\codts P_{i_{n-1} i_n}} \\
-    &\qquad = \frac{\pi_i P_{ij}}{\pi_j}
-  \end{align*}
-  which depends only on $i$ and $j$.
- For reversibility, the previous expression must be the same as
-  the forward transition probability $\Prob{X_{\ell+1} = i \given X_{j =
-      j}} = P_{ji}$
+    \begin{align*}
+        & \Prob{X_\ell = i \given X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2},
+        \dots, X_n = i_n} \\
+        &\qquad = \frac{\Prob{X_\ell = i, X_{\ell+1} = j, X_{\ell+2} = i_
+        {\ell+2}, \dots, X_n}}{X_{\ell+1} = j, X_{\ell+2} = i_{\ell+2},
+        \dots, X_n} \\
+        &\qquad = \frac{\pi_i P_{ij}P_{j \ell+2}\cdots P_{i_{n-1} i_n}}{\pi_j
+        P_{j \ell+2}\cdots P_{i_{n-1} i_n}} \\
+        &\qquad = \frac{\pi_i P_{ij}}{\pi_j}
+    \end{align*}
+    which depends only on \( i \) and \( j \). For reversibility, the
+    previous expression must be the same as the forward transition
+    probability \( \Prob{X_{\ell+1} = i \given X_{j = j}} = P_{ji} \)
 \end{proof}
 
 \begin{remark}
-  The definition is inconvenient because it requires the
-stationary distribution $\pi$ in advance  to check if the chain is time-reversible.  The
-following theorem  avoids having to know $\pi$ in advance and can even
-help find $\pi$.
+    The definition is inconvenient because it requires the stationary
+    distribution \( \pi \) in advance to check if the chain is
+    time-reversible.  The following theorem avoids having to know \( \pi
+    \) in advance and can even help find \( \pi \).
 
 \end{remark}
 \begin{theorem}[Reversibility Condition]
-  A Markov chain with invariant distribution $\pi$ is reversible if
-  and only if there is a probability distribution $\pi$ such that
-  \[
-    \pi_i P_{ij} = \pi_j P_{ji}
-  \]
-  for all $i$ and $j$ and $\pi$ is the unique stationary distribution.
+    A Markov chain with invariant distribution \( \pi \) is reversible
+    if and only if there is a probability distribution \( \pi \) such
+    that
+    \[
+        \pi_i P_{ij} = \pi_j P_{ji}
+    \] for all \( i \) and \( j \) and \( \pi \) is the unique
+    stationary distribution.
 \end{theorem}
 
 \begin{remark}
-  The condition
-  \[
-    \pi_i P_{ij} = \pi_j P_{ji}
-  \]
-  is the \defn{detailed balance equation}.\index{detailed balance equation}
+    The condition
+    \[
+        \pi_i P_{ij} = \pi_j P_{ji}
+    \] is the \defn{detailed balance equation}.%
+    \index{detailed balance equation}
 \end{remark}
 
 \begin{proof}
-  \begin{description}
-  \item[$\Rightarrow$] The condition follows at once from the
-    proof of the Proposition.
-  \item[$\Leftarrow$] From the proposition, the time-reversed chain is
-    Markov.  If the original and the time-reversed chain both
-    start at the same invariant distribution and satisfy the
-    condition, then the transition probabilities are the same.  Then
-    by definition the chain is reversible. 
-  \end{description}
+    \begin{description}
+        \item[$\Rightarrow$]
+            The condition follows at once from the proof of the
+            Proposition.
+        \item[$\Leftarrow$]
+            From the proposition, the time-reversed chain is Markov.  If
+            the original and the time-reversed chain both start at the
+            same invariant distribution and satisfy the condition, then
+            the transition probabilities are the same.  Then by
+            definition the chain is reversible.
+    \end{description}
 \end{proof}
 
 \begin{remark}
-  The condition says
-  \[
-    \Prob{X_n =i, X_{n+1} = j} = \Prob{X_n =j, X_{n+1} = i}
-  \]
-  so the chain transitions from $i$ to $j$ as often as it transitions
-  from $j$ to $i$.
+    The condition says
+    \[
+        \Prob{X_n =i, X_{n+1} = j} = \Prob{X_n =j, X_{n+1} = i}
+    \] so the chain transitions from \( i \) to \( j \) as often as it
+    transitions from \( j \) to \( i \).
 \end{remark}
 
 \begin{remark}
-  If there exist $2$ states such that $P_{ij} > 0$ but $P_{ji} = 0$
-  then the detailed balance equation fails, since the limiting probabilities of all
-entries of an ergodic chain are nonzero. 
-  Then the chain is not reversible.
+    If there exist \( 2 \) states such that \( P_{ij} > 0 \) but \( P_{ji}
+    = 0 \) then the detailed balance equation fails, since the limiting
+    probabilities of all entries of an ergodic chain are nonzero. Then
+    the chain is not reversible.
 \end{remark}
 
 \begin{theorem}
-  Assume the Markov chain is irreducible and positive recurrent and
-  probability distribution $\pi$ satisfyies the detailed balance equations
-  \[
-    \pi_i P_{ij} = \pi_j P_{ji}.
-  \]
-  \begin{enumerate}
-  \item The distribution $pi$ is the stationary distribution of the chain.
-  \item The chain is reversible.
-  \end{enumerate}
+    Assume the Markov chain is irreducible and positive recurrent and
+    probability distribution \( \pi \) satisfyies the detailed balance
+    equations
+    \[
+        \pi_i P_{ij} = \pi_j P_{ji}.
+    \]
+    \begin{enumerate}
+        \item
+            The distribution \( pi \) is the stationary distribution of
+            the chain.
+        \item
+            The chain is reversible.
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  Using the detailed balance equations
-  \[
-    \sum_j \pi_j P_{ij} = \sum_j \pi_i P_{ij} = \pi_i \sum_j P_{ij} =
-    \pi_i.
-  \]
-  Since the chains is irreducible and positive recurrent, then $\pi$
-  must be the unique stationary distribution.
+    Using the detailed balance equations
+    \[
+        \sum_j \pi_j P_{ij} = \sum_j \pi_i P_{ij} = \pi_i \sum_j P_{ij}
+        = \pi_i.
+    \] Since the chains is irreducible and positive recurrent, then \(
+    \pi \) must be the unique stationary distribution.
 \end{proof}
 
 \subsubsection*{Kolmogorov's Loop Criterion}
 
-A transition probability matrix is
-\emph{reversible}\index{reversible matrix} if the
-corresponding Markov chain is reversible.  From the definition, an
-irreducible and positive recurrent Markov chain is reversible if and
+A transition probability matrix is \emph{reversible}%
+\index{reversible matrix}
+if the corresponding Markov chain is reversible.  From the definition,
+an irreducible and positive recurrent Markov chain is reversible if and
 only if
 \[
-  P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{\ell-1} j_\ell} P_{j_\ell, j_0} =
-  P_{j_0 j_\ell} P_{j_\ell j_{\ell-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
-\]
-for every finite sequence of distinct state $j_0, j_1, \dots, j_\ell$.
-This is called \defn{Kolmogorov's loop criterion}.\index{Kolmogorov's loop criterion}
+    P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{\ell-1} j_\ell} P_{j_\ell, j_0}
+    = P_{j_0 j_\ell} P_{j_\ell j_{\ell-1}} \cdots P_{j_2 j_1} P_{j_1, j_0}
+\] for every finite sequence of distinct state \( j_0, j_1, \dots, j_\ell
+\). This is called \defn{Kolmogorov's loop criterion}.%
+\index{Kolmogorov's loop criterion}
 In words, Kolmogorov's loop criterion says a Markov transition matrix is
-reversible if and only for every loop of distinct states, the forward loop probability product
-equals the backward loop probability product.
+reversible if and only for every loop of distinct states, the forward
+loop probability product equals the backward loop probability product.
 
 For a two-state Markov chain Kolmogorov's loop criterion is always
-satisfied since $P_{12} P_{21} = P_{12} P_{21}$.  If the transition
-matrix is symmetric, then $P_{ij} = P_{ji}$ for all $i$, $j$, so
-Kolmogorov's loop criterion is always satisfied and the chain is
-reversible.  
+satisfied since \( P_{12} P_{21} = P_{12} P_{21} \).  If the transition
+matrix is symmetric, then \( P_{ij} = P_{ji} \) for all \( i \), \( j \),
+so Kolmogorov's loop criterion is always satisfied and the chain is
+reversible.
 
 Usually loop checking involves much computational work.  The obvious
-reason is that he number of loops that need
-to be checked grows very quickly with $n$ where $n$ is the number of
-states. See Table~\ref{tab:reversiblemarkovchains:loopeqns}
-The following Proposition counts the number of equations that must be checked to
-apply Kolmogorov's loop criterion.
+reason is that he number of loops that need to be checked grows very
+quickly with \( n \) where \( n \) is the number of states.  See Table~%
+\ref{tab:reversiblemarkovchains:loopeqns} The following Proposition
+counts the number of equations that must be checked to apply
+Kolmogorov's loop criterion.
 
 \begin{proposition}
-For an $k$ state Markov chain, with $k \ge 3$, the number of
-equations that must be checked for reversibility by Kolmogorov's method is
-\[
-  \sum_{\nu=3}^n \binom{n}{\nu} \frac{(\nu-1)!}{2}.
-\]
+    For an \( k \) state Markov chain, with \( k \ge 3 \), the number of
+    equations that must be checked for reversibility by Kolmogorov's
+    method is
+    \[
+        \sum_{\nu=3}^n \binom{n}{\nu} \frac{(\nu-1)!}{2}.
+    \]
 \end{proposition}
 
 \begin{proof}
-  \begin{enumerate}
-  \item For a $3$-state Markov chain, only $1$ equation
-    \[
-      P_{12}P_{23}P_{31} = P_{31} P_{32} P_{21}
-    \]
-    needs checking, since no $2$ step loops need to be checked and any
-    other length $3$ loop over the same states results in the same
-    equation.
-  \item For $n=4$,  check each loop of $3$ states and the each
-    loop of $4$ states.
-   For $3$ state loops, choose any $3$ of $4$ states and there is
-    one equation for each.  For the $4$ state loop, fix the starting
-    state.  Then there are $3!$ orders for the other states.  However,
-     the other side of the equation is just the reversed path, so
-     there are only $\frac{3!}{2}$ paths involving $4$ states with the
-     first state fixed.  In total, there are
-     \[
-       \binom{4}{3} + \binom{4}{4} \frac{(4-1)!}{2} = 7
-     \]
-     equations.
-   \item The previous argument easily generalizes to larger values of $n$.
-  \end{enumerate}
+    \begin{enumerate}
+        \item
+            For a \( 3 \)-state Markov chain, only \( 1 \) equation
+            \[
+                P_{12}P_{23}P_{31} = P_{31} P_{32} P_{21}
+            \] needs checking, since no \( 2 \) step loops need to be
+            checked and any other length \( 3 \) loop over the same
+            states results in the same equation.
+        \item
+            For \( n=4 \), check each loop of \( 3 \) states and the
+            each loop of \( 4 \) states. For \( 3 \) state loops, choose
+            any \( 3 \) of \( 4 \) states and there is one equation for
+            each.  For the \( 4 \) state loop, fix the starting state.
+            Then there are \( 3! \) orders for the other states.
+            However, the other side of the equation is just the reversed
+            path, so there are only \( \frac{3!}{2} \) paths involving \(
+            4 \) states with the first state fixed.  In total, there are
+            \[
+                \binom{4}{3} + \binom{4}{4} \frac{(4-1)!}{2} = 7
+            \] equations.
+        \item
+            The previous argument easily generalizes to larger values of
+            \( n \).
+    \end{enumerate}
 \end{proof}
 
 \begin{table}
-  \centering
-  \begin{tabular}{ccccccccccc}
-    $k$& 1&2 &3 &4 &5 &6 & 7 & 8 & 9 & 10 \
-    equations & 0 & 0 & 1 & 7 & 37 & 197 & 1{,}172 & 8{,}018 & 62{,}814 & 556{,}014
-  \end{tabular}
-  \caption{Number of equation to be checked for a Markov chain with
-    $n$ states.}
-  \label{tab:reversiblemarkovchains:loopeqns}
+    \centering
+    \begin{tabular}{ccccccccccc}
+      $k$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+      equations     & 0 & 0 & 1 & 7 & 37 & 197 & 1{,}172 & 8{,}018 & 62{,}814 & 556{,}014
+    \end{tabular}
+    \caption{Number of equation to be checked for a Markov chain with \(
+    n \) states.}%
+    \label{tab:reversiblemarkovchains:loopeqns}
 \end{table}
 
-Next define operations to transform transition matrices in such a way as to
-preserve their reversibility status (either reversible or
-non-reversible). These
-transformations will be useful in creating new reversible Markov chains from existing
-ones, and for checking reversibility of Markov chains.
-A row multiplication operation on row $i$ of a Markov transition
-matrix is the multiplication of row $i$ by a positive constant leaving the sum
-of the non diagonal elements at most $1$, followed by an adjustment to $p_{ii}$ to make
-the row sum exactly to $1$.
-A column multiplication operation on column $j$ of a Markov transition matrix is the multiplication of column $j$ by a positive constant of allowable
-size (so no row sums exceed 1) followed by adjustments to all diagonal entries to
-make every row sum exactly 1.
+Next define operations to transform transition matrices in such a way as
+to preserve their reversibility status (either reversible or
+non-reversible).  These transformations will be useful in creating new
+reversible Markov chains from existing ones, and for checking
+reversibility of Markov chains. A row multiplication operation on row \(
+i \) of a Markov transition matrix is the multiplication of row \( i \)
+by a positive constant leaving the sum of the non diagonal elements at
+most \( 1 \), followed by an adjustment to \( p_{ii} \) to make the row
+sum exactly to \( 1 \). A column multiplication operation on column \( j
+\) of a Markov transition matrix is the multiplication of column \( j \)
+by a positive constant of allowable size (so no row sums exceed 1)
+followed by adjustments to all diagonal entries to make every row sum
+exactly 1.
 
 \begin{lemma}
-  A Markov chain matrix P maintains its reversibility status after
-a row multiplication operation or a column multiplication operation.
+    A Markov chain matrix P maintains its reversibility status after a
+    row multiplication operation or a column multiplication operation.
 \end{lemma}
 
 \begin{proof}
-  Let the $i$th row of $P$ correspond to state $i$. The Kolmogorov
-  loop criterion states
-that $P$ is reversible if and only if for all loops of distinct states, the forward loop probability
-product equals the backward loop probability product. If a loop does not include
-state $i$, then a multiplication row operation on row $i$ has no effect on
-the forward
-and backward loop products. Otherwise, state $i$ appears in the first
-subscript of a forward loop probability if and only if it appears in the first subscript of a
-backward loop probability. So the row operation will have an identical effect on
-both sides of the loop product. A similar conclusion holds for column product
-operations.
+    Let the \( i \)th row of \( P \) correspond to state \( i \).  The
+    Kolmogorov loop criterion states that \( P \) is reversible if and
+    only if for all loops of distinct states, the forward loop
+    probability product equals the backward loop probability product.
+    If a loop does not include state \( i \), then a multiplication row
+    operation on row \( i \) has no effect on the forward and backward
+    loop products.  Otherwise, state \( i \) appears in the first
+    subscript of a forward loop probability if and only if it appears in
+    the first subscript of a backward loop probability.  So the row
+    operation will have an identical effect on both sides of the loop
+    product.  A similar conclusion holds for column product operations.
 \end{proof}
 
 \begin{remark}
-  Let $P^{\star}$ be the matrix resulting from a row (or column) multiplication operation on $P$, then the limiting probabilities for $P^{\star}$ in the lemma
-are generally different than the limiting probabilities for $P$. 
+    Let \( P^{\star} \) be the matrix resulting from a row (or column)
+    multiplication operation on \( P \), then the limiting probabilities
+    for \( P^{\star} \) in the lemma are generally different than the
+    limiting probabilities for \( P \).
 \end{remark}
 
-If the matrix $P$ is an $n \times n$ probability transition matrix, then a sequence of at
-most $n - 1$ row or column multiplication operations will be sufficient to determine
-whether or not $P$ is reversible or not.
+If the matrix \( P \) is an \( n \times n \) probability transition
+matrix, then a sequence of at most \( n - 1 \) row or column
+multiplication operations will be sufficient to determine whether or not
+\( P \) is reversible or not.
 \begin{enumerate}
-\item 
-\item Pick two nonzero symmetric positions in $P$, say $P_{i_1,i_2}$ and $P_{i_2,i_1}$. Let $S_1 =
-\set{i_1, i_2}$. If $P_{i_1,i_2} = P_{i_2,i_1}$, move to the next step. Otherwise, assume $P_{i_1,i_2 }< P_{i_2,i_1}$.
-Multiply row $i_2$ by $P_{i_1,i_2}/P_{i_2,i_1}$ and adjust $P_{i_2,i_2}$ to make the row sum to $1$. If
-$P_{i_1,i_2} > P_{i_2,i_1}$, multiply column $i_2$ by $P_{i_2,i_1}/P_{i_1,i_2}$ and adjust all diagonal entries so
- the rows sum to $1$. The new matrix $P^{\star}$ will now have $P_{i_1,i_2} = P_{i_2,i_1}^{\star}$.
-\item Choose another state $i_3$ which has nonzero transition probabilities with a state
-in $S_1$. Make the appropriate row or column multiplication operation on row or
-column $i_3$. Set $S_2 = \set{i_1, i_2, i_3}$.
-\item  Repeat the previous with a new state until there are no states
-  left to add. After $n - 1$
-steps we have $S_n = \set{i_1, \dots, i_n}. Let $P$^{\star}$ be the
-final matrix.
+    \item
+    \item
+        Pick two nonzero symmetric positions in \( P \), say \( P_{i_1,i_2}
+        \) and \( P_{i_2,i_1} \).  Let \( S_1 = \set{i_1, i_2} \).  If \(
+        P_{i_1,i_2} = P_{i_2,i_1} \), move to the next step.  Otherwise,
+        assume \( P_{i_1,i_2 }< P_{i_2,i_1} \). Multiply row \( i_2 \)
+        by \( P_{i_1,i_2}/P_{i_2,i_1} \) and adjust \( P_{i_2,i_2} \) to
+        make the row sum to \( 1 \).  If \( P_{i_1,i_2} > P_{i_2,i_1} \),
+        multiply column \( i_2 \) by \( P_{i_2,i_1}/P_{i_1,i_2} \) and
+        adjust all diagonal entries so the rows sum to \( 1 \).  The new
+        matrix \( P^{\star} \) will now have \( P_{i_1,i_2} = P_{i_2,i_1}^
+        {\star} \).
+    \item
+        Choose another state \( i_3 \) which has nonzero transition
+        probabilities with a state in \( S_1 \).  Make the appropriate
+        row or column multiplication operation on row or column \( i_3 \).
+        Set \( S_2 = \set{i_1, i_2, i_3} \).
+    \item
+        Repeat the previous with a new state until there are no states
+        left to add.  After \( n - 1 \) steps we have \( S_n = \set{i_1,
+        \dots, i_n}.  Let \)P\( ^{\star} \) be the final matrix.
 \end{enumerate}
 
 \begin{theorem}
-  Let $P$ be a $k \times k$ transition matrix to which the Algorithm
-  is applied, resulting in $P^{\star}$.  Then $P$ is reversible if and
-  only if $\P^{\star}$ is symmetric.
+    Let \( P \) be a \( k \times k \) transition matrix to which the
+    Algorithm is applied, resulting in \( P^{\star} \).  Then \( P \) is
+    reversible if and only if \( \P^{\star} \) is symmetric.
 \end{theorem}
 
 \begin{proof}
-  \begin{enumerate}
-  \item $\Rightarrow$
     \begin{enumerate}
-    \item Assume $P$ is reversible, then by the lemma, $P^{\star}$ is
-      reversible.
-    \item Let $\phi = (\phi_1, \dots, \phi_k)$ be the stationary
-      distribution for $P^{\star}$.
-    \item Note that $P^{\star}$ is formed so that $P_{ij}^{\star} =
-      P_{ij}^{\star}$ for the set of transitions $(i,j)$ which
-      includes each of the states $1, \dots, k$ among the $(i,j)$
-      pairs.  Let $(i,j)$ be one of the transition pairs in the
-      collection.
-    \item Since $P^{\star}$ is reversible, the detailed balance
-      equations  $\phi_i P_{ij}^{\star} = \phi_j
-      P_{ji}^{\star}$ must hold for the pair $(i,j)$.
-    \item But all the states $1, \dots, k$ appear in the set of
-      transitions somewhere in the collection, so $\phi_1 = \phi_2 =
-      \cdots = \phi_k$.
-    \item Now take an arbitrary pair $(i,j)$.  Since $P^{\star}$ is
-      reversible, the detailed balance holds for all $i,j$.  Hence
-      $\phi_i P_{ij}^{\star} = \phi_j P_{ji}^{\star}$ for all $i,j$.
-    \item Since $\phi_i = \phi_j$, then $P_{ij}^{\star} =
-      P_{ji}^{\star}$, so $P^{\star}$ is symmetric.
-    \end{enumerate}
-  \item $\Leftarrow$
+        \item
+            \( \Rightarrow \)
+            \begin{enumerate}
+                \item
+                    Assume \( P \) is reversible, then by the lemma, \(
+                    P^{\star} \) is reversible.
+                \item
+                    Let \( \phi = (\phi_1, \dots, \phi_k) \) be the
+                    stationary distribution for \( P^{\star} \).
+                \item
+                    Note that \( P^{\star} \) is formed so that \( P_{ij}^
+                    {\star} = P_{ij}^{\star} \) for the set of
+                    transitions \( (i,j) \) which includes each of the
+                    states \( 1, \dots, k \) among the \( (i,j) \)
+                    pairs.  Let \( (i,j) \) be one of the transition
+                    pairs in the collection.
+                \item
+                    Since \( P^{\star} \) is reversible, the detailed
+                    balance equations \( \phi_i P_{ij}^{\star} = \phi_j
+                    P_{ji}^{\star} \) must hold for the pair \( (i,j) \).
+                \item
+                    But all the states \( 1, \dots, k \) appear in the
+                    set of transitions somewhere in the collection, so \(
+                    \phi_1 = \phi_2 = \cdots = \phi_k \).
+                \item
+                    Now take an arbitrary pair \( (i,j) \).  Since \( P^
+                    {\star} \) is reversible, the detailed balance holds
+                    for all \( i,j \).  Hence \( \phi_i P_{ij}^{\star} =
+                    \phi_j P_{ji}^{\star} \) for all \( i,j \).
+                \item
+                    Since \( \phi_i = \phi_j \), then \( P_{ij}^{\star}
+                    = P_{ji}^{\star} \), so \( P^{\star} \) is
+                    symmetric.
+            \end{enumerate}
+        \item
+            \( \Leftarrow \)
 
-    If $P^{\star}$ is symmetric, then $P^{\star}$ is reversible, so
-    the by the lemma $P$ is reversible.
-  \end{enumerate}
+            If \( P^{\star} \) is symmetric, then \( P^{\star} \) is
+            reversible, so the by the lemma \( P \) is reversible.
+    \end{enumerate}
 \end{proof}
 
 \begin{remark}
-  The Algorithm chooses the smaller of $2$ matrix entries to
-  change the matrix $P$.  Also corrections are made to the diagonal
-  elements in order to ensure the rows sum to $1$.  In fact, this is
-  not necessary and the transformed matrix $P^{\star}$ no longer needs
-  to be a transition matrix.  Examining the proof shows the
-  important issue is whether $P^{\star}$ is symmetric or not.
+    The Algorithm chooses the smaller of \( 2 \) matrix entries to
+    change the matrix \( P \).  Also corrections are made to the
+    diagonal elements in order to ensure the rows sum to \( 1 \).  In
+    fact, this is not necessary and the transformed matrix \( P^{\star} \)
+    no longer needs to be a transition matrix.  Examining the proof
+    shows the important issue is whether \( P^{\star} \) is symmetric or
+    not.
 \end{remark}
 
 \begin{example}
-  Let
-  \[
-    P =
-    \begin{pmatrix}
-      17/40 & 0 & 3/40 & 1/2 \\
-      0     & 11/20 & 1/4 & 1/5 \\
-      3/10  & 1/4   & 9/20 & 0 \\
-      1/2   & 1/20  & 0    & 9/20
-    \end{pmatrix}.
-  \]
-  To check for reversibility, transform $P$ by column or row
-  operations.  First, the zeroes of $P$ are symmetric, and $P_{14} =
-  P_{41}$, so symmetry for states $\set{1,4}$ already exists.
-Now make the $(1,3)$ entry match the $(3,1)$ entry without losing the
-$(1,4)$ and $(4,1)$ symmetry.  It is possible to multiply column $3$
-by $(3/10)/(3/40) = 4$ of by $(3/40)/(3/10) = 1/4$.   Make the latter
-choice to obtain a new matrix with row $3$ equal to $(3/40, 1/16,
-9/80, 0)$.  This is not a transition probability matrix because the
-row no longer sums to $1$, so change the diagonal element at $(3,3)$
-to $1 - 3/40 - 1/16 = 69/80$.  Now the transformed matrix is
-  \[
-    P^{(1)} =
-    \begin{pmatrix}
-      17/40 & 0 & 3/40 & 1/2 \\
-      0     & 11/20 & 1/4 & 1/5 \\
-      3/40  & 1/16   & 69/80 & 0 \\
-      1/2   & 1/20  & 0    & 9/20
-    \end{pmatrix}.
-  \]
-Now the set of included states is $S = \set{1,4,3}$, so state $2$
-needs to be included.  To preserve the values in $(1,4)$ and $(4,1)$,
-and $(1,3)$ and $(3,1)$, only row $2$ or column $2$ can be changed.
-Choose to multiply column $2$ by $4$ to make entries $(4,2)$ and
-$(2,4)$ equal.  The result is
-  \[
-    P^{(2)} =
-    \begin{pmatrix}
-      17/40 & 0 & 3/40 & 1/2 \\
-      0     & 11/5 & 1/4 & 1/5 \\
-      3/40  & 1/4   & 69/80 & 0 \\
-      1/2   & 1/5  & 0    & 9/20
-    \end{pmatrix}.
-  \]
-Adjust the entries in the diagonal positions in rows $2$, $3$, $4$ to
-make the matrix a transition probability matrix
-  \[
-    P^{(\star)} =
-    \begin{pmatrix}
-      17/40 & 0 & 3/40 & 1/2 \\
-      0     & 11/20 & 1/4 & 1/5 \\
-      3/40  & 1/16   & 27/40 & 0 \\
-      1/2   & 1/5  & 0    & 3/10
-    \end{pmatrix}.
-  \]
-Now $P$ is reversible if and only if $P^{\star}$ is reversible.  But
-$P^{\star}$ is symmetric so it is automatically reversible.  Using the
-detailed balance equations makes it easy to compute the stationary
-distribution of $P$, see the exercises.
+    Let
+    \[
+        P =
+        \begin{pmatrix}
+            17/40       & 0     & 3/40  & 1/2 \\
+            0   & 11/20 & 1/4   & 1/5 \\
+            3/10        & 1/4   & 9/20  & 0 \\
+            1/2 & 1/20  & 0     & 9/20
+        \end{pmatrix}
+        .
+    \] To check for reversibility, transform \( P \) by column or row
+    operations.  First, the zeroes of \( P \) are symmetric, and \( P_{14}
+    = P_{41} \), so symmetry for states \( \set{1,4} \) already exists.
+    Now make the \( (1,3) \) entry match the \( (3,1) \) entry without
+    losing the \( (1,4) \) and \( (4,1) \) symmetry.  It is possible to
+    multiply column \( 3 \) by \( (3/10)/(3/40) = 4 \) of by \( (3/40)/(3/10)
+    = 1/4 \).  Make the latter choice to obtain a new matrix with row \(
+    3 \) equal to \( (3/40, 1/16, 9/80, 0) \).  This is not a transition
+    probability matrix because the row no longer sums to \( 1 \), so
+    change the diagonal element at \( (3,3) \) to \( 1 - 3/40 - 1/16 =
+    69/80 \).  Now the transformed matrix is
+    \[
+        P^{(1)} =
+        \begin{pmatrix}
+            17/40       & 0     & 3/40  & 1/2 \\
+            0   & 11/20 & 1/4   & 1/5 \\
+            3/40        & 1/16  & 69/80 & 0 \\
+            1/2 & 1/20  & 0     & 9/20
+        \end{pmatrix}
+        .
+    \] Now the set of included states is \( S = \set{1,4,3} \), so state
+    \( 2 \) needs to be included.  To preserve the values in \( (1,4) \)
+    and \( (4,1) \), and \( (1,3) \) and \( (3,1) \), only row \( 2 \)
+    or column \( 2 \) can be changed. Choose to multiply column \( 2 \)
+    by \( 4 \) to make entries \( (4,2) \) and \( (2,4) \) equal.  The
+    result is
+    \[
+        P^{(2)} =
+        \begin{pmatrix}
+            17/40       & 0     & 3/40  & 1/2 \\
+            0   & 11/5  & 1/4   & 1/5 \\
+            3/40        & 1/4   & 69/80 & 0 \\
+            1/2 & 1/5   & 0     & 9/20
+        \end{pmatrix}
+        .
+    \] Adjust the entries in the diagonal positions in rows \( 2 \), \(
+    3 \), \( 4 \) to make the matrix a transition probability matrix
+    \[
+        P^{(\star)} =
+        \begin{pmatrix}
+            17/40       & 0     & 3/40  & 1/2 \\
+            0   & 11/20 & 1/4   & 1/5 \\
+            3/40        & 1/16  & 27/40 & 0 \\
+            1/2 & 1/5   & 0     & 3/10
+        \end{pmatrix}
+        .
+    \] Now \( P \) is reversible if and only if \( P^{\star} \) is
+    reversible.  But \( P^{\star} \) is symmetric so it is automatically
+    reversible.  Using the detailed balance equations makes it easy to
+    compute the stationary distribution of \( P \), see the exercises.
 
 \end{example}
 \subsection*{Examples of Reversible Chains}
 
-\subsubsection*{Negative Drift Random Walk on the Non-negative
-  Integers}
+\subsubsection*{Negative Drift Random Walk on the Non-negative Integers}
 
-Consider a negative drift simple
-random walk, restricted to be non-negative by a reflecting boundary.
-That is,  $P_{01} = 1$ and otherwise $P_{i,i+1} = p <
-0.5$, $P_{i,i-1} = 1 - p > 0.5$.  
-The time reversibility equations are
+Consider a negative drift simple random walk, restricted to be
+non-negative by a reflecting boundary. That is, \( P_{01} = 1 \) and
+otherwise \( P_{i,i+1} = p < 0.5 \), \( P_{i,i-1} = 1 - p > 0.5 \). The
+time reversibility equations are
 \begin{align*}
-  \pi_0 &= (1-p) \pi \\
-  p \pi_{i} &= (1-p) \pi_{i+1}
+    \pi_0       &= (1-p) \pi \\
+    p \pi_{i}   &= (1-p) \pi_{i+1}
 \end{align*}
-so $\pi_1 = \pi_0/(1-p)$, $\pi_2 = p\pi_0/(1-p)^{2}$ and in general
-$\pi_1 = p^{n-1} \pi_0/(1-p)^n$.  Since $\sum_{nu} \pi_{\nu} = 1$,
+so \( \pi_1 = \pi_0/(1-p) \), \( \pi_2 = p\pi_0/(1-p)^{2} \) and in
+general \( \pi_1 = p^{n-1} \pi_0/(1-p)^n \).  Since \( \sum_{nu} \pi_{\nu}
+= 1 \),
 \[
-  \pi \left( 1 + \frac{1}{1-p} \sum_{\nu} \left( \frac{p}{1-p} )^{\nu}
+    \pi \left( 1 + \frac{1}{1-p} \sum_{\nu} \left( \frac{p}{1-p} \right)^{\nu}
     \right) = 1.
-  \]
-  Since $\frac{p}{1-p} < 1$ the geometric series converges and
-  \begin{align*}
-    \pi_0 &= \frac{1}{2}\cdot \frac{1-2p}{1-p} \\
-    \pi_n &= \left( \frac{1}{2} - p \right) \left(  \frac{p}{1-p}
-            \right)^n, n \ge 1.
-  \end{align*}
-  
-\subsubsection*{Random Walks on Weighted Graphs}
- A \emph{random walks on a weighted graph}\index{random walk! on graphs}\index{Markov chain ! random walk on a graph}
-  is a general and common example of a reversible Markov
-  chain. Assume every undirected edge between vertices $i$ and $j$
-in a complete graph has a weight $w_{ij} = w_{ji}$.  The Markov chain
-is irreducible because the graph with edge weights greater than $0$ is complete. Edges with zero
-weight are not.  When at $i$, the walker goes to $j$ with probability proportional
-to $w_{ij}$ , so
+\] Since \( \frac{p}{1-p} < 1 \) the geometric series converges and
+\begin{align*}
+    \pi_0       &= \frac{1}{2}\cdot \frac{1-2p}{1-p} \\
+    \pi_n       &= \left( \frac{1}{2} - p \right) \left( \frac{p}{1-p}
+    \right)^n, n \ge 1.
+\end{align*}
+
+\subsubsection*{Random Walks on Weighted Graphs} A \emph{random walks on
+a weighted graph}%
+\index{random walk! on graphs}%
+\index{Markov chain ! random walk on a graph}
+is a general and common example of a reversible Markov chain.  Assume
+every undirected edge between vertices \( i \) and \( j \) in a complete
+graph has a weight \( w_{ij} = w_{ji} \).  The Markov chain is
+irreducible because the graph with edge weights greater than \( 0 \) is
+complete.  Edges with zero weight are not.  When at \( i \), the walker
+goes to \( j \) with probability proportional to \( w_{ij} \) , so
 \[
-  P_{ij} = \frac{w_{ij}}{\sum_{\nu} w_{i\nu}}.
-\]
-Let
+    P_{ij} = \frac{w_{ij}}{\sum_{\nu} w_{i\nu}}.
+\] Let
 \[
-  s = sum_{i,j} w_{ij}
-\]
-be the sum of all weights and let
+    s = sum_{i,j} w_{ij}
+\] be the sum of all weights and let
 \[
-  \pi_i = \frac{\sum_{\nu} w_{i\nu}}{s}.
-\]
-The  probability transition matrix is reversible because
+    \pi_i = \frac{\sum_{\nu} w_{i\nu}}{s}.
+\] The probability transition matrix is reversible because
 \[
-  \pi_i P_{ij} = \frac{\sum_{\nu} w_{i\nu}}{s} \cdot
-  \frac{w_{ij}}{\sum_{\nu} w_{i\nu}} = \frac{w_{ij}}{s} =
-  \frac{w_{ji}}{s} = \frac{\sum_{\nu} w_{j\nu}}{s} \cdot
-  \frac{w_{ji}}{\sum_{\nu} w_{j\nu}} = \pi_j P_{ji}.
+    \pi_i P_{ij} = \frac{\sum_{\nu} w_{i\nu}}{s} \cdot \frac{w_{ij}}{\sum_
+    {\nu} w_{i\nu}} = \frac{w_{ij}}{s} = \frac{w_{ji}}{s} = \frac{\sum_{\nu}
+    w_{j\nu}}{s} \cdot \frac{w_{ji}}{\sum_{\nu} w_{j\nu}} = \pi_j P_{ji}.
 \]
 
-It is not necessary to forbid self-edges, some edges $w_{ii}$ may be
-nonzero.  However, $w_{ii}$ appears only once in the sum $s$, while
-the value $w_{ij}$ appears twice, once each for $i$ and $j$.
+It is not necessary to forbid self-edges, some edges \( w_{ii} \) may be
+nonzero.  However, \( w_{ii} \) appears only once in the sum \( s \),
+while the value \( w_{ij} \) appears twice, once each for \( i \) and \(
+j \).
 
-In the simple case with no self-edges and all nonzero weights equal
-to $1$, the invariant distribution is
+In the simple case with no self-edges and all nonzero weights equal to \(
+1 \), the invariant distribution is
 \[
-  \pi_i = \frac{\operatorname{degree}(i)}{2 \cdot (\text{number of
-      edges})}.
+    \pi_i = \frac{%
+    \operatorname{degree}
+    (i)}{2 \cdot (\text{number of edges})}.
 \]
-
 
 \subsubsection*{Ehrenfest Urn Model}
 
@@ -542,71 +597,74 @@ transition probability matrix is
 \[
     P =
     \begin{pmatrix}
-        0 & 1 & 0 & 0 & \cdots & 0 & 0 \\
-        \frac{1}{N} & 0 & 1-\frac{1}{N} & 0 & \cdots & 0 & 0 \\
-        0 & \frac{2}{N} & 0 & 1-\frac{2}{N} & \cdots & 0 & 0 \\
-        \vdots & \vdots & \vdots & \vdots & \ddots& \vdots & \vdots \\
-        0 & 0 & 0 & 0 & \cdots & 0 & 1/N \\
-        0 & 0 & 0 & 0 & \cdots & 1 & 0 \\
-    \end{pmatrix}.
+        0       & 1     & 0     & 0     & \cdots        & 0     & 0 \\
+        \frac{1}{N}     & 0     & 1-\frac{1}{N} & 0     & \cdots
+        & 0     & 0 \\
+        0       & \frac{2}{N}   & 0     & 1-\frac{2}{N} & \cdots
+        & 0     & 0 \\
+        \vdots  & \vdots        & \vdots        & \vdots        & \ddots&
+        \vdots  & \vdots \\
+        0       & 0     & 0     & 0     & \cdots        & 0     & 1/N \\
+        0       & 0     & 0     & 0     & \cdots        & 1     & 0 \\
+    \end{pmatrix}
+    .
 \] The balls fluctuate between the two containers with a drift from the
 one with the larger number of balls to the one with the smaller numbers.
 
 A stationary distribution for this Markov chain has entry \( \pi_i =
-\binom{N}{i}/2^N \).   This is the binomial distribution on \( N \),
-so that for large \( N \), this can be approximated with the normal
+\binom{N}{i}/2^N \).  This is the binomial distribution on \( N \), so
+that for large \( N \), this can be approximated with the normal
 distribution.  This conclusion is plausible given the physical origin of
-the Markov chain as a model for diffusion. This Markov chain is
+the Markov chain as a model for diffusion.  This Markov chain is
 ergodic.  All states are accessible and all states communicate.  The
 chain is periodic with period \( 2 \) so it is not regular.
 
 To show the Markov chain is reversible requires
 \begin{align*}
-  \pi_0 P_{01} \= \pi_1 P_{10}, \\
-  \pi_i P_{i,i+1} \= \pi_{i+1} P_{i+1,i}, \\
-  \pi_i P_{i,i-1} \= \pi_{i-1} P_{i-1,i}, \\
-  \pi_N P_{N,N-11} \= \pi_{N-1} P_{N-1,N}. \\
+    \pi_0 P_{01} &= \pi_1 P_{10}, \\
+    \pi_i P_{i,i+1} &= \pi_{i+1} P_{i+1,i}, \\
+    \pi_i P_{i,i-1} &= \pi_{i-1} P_{i-1,i}, \\
+    \pi_N P_{N,N-11} &= \pi_{N-1} P_{N-1,N}.  \\
 \end{align*}
 See the exercises.
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
 
-It should not be possible to distinguish whether
-the video is played forward or in reverse simply by viewing the video
-and observing the movement of the ball between the urns.  The
-distribution of the balls is stationary, or in physical terms, in
-equilibrium.  That is, a ball is as likely to move from urn A to
-urn B in forward time, or from urn B to urn A in reverse time.
-Observing the movement of balls between the urns provides no clue
-about the time direction of the video.
+It should not be possible to distinguish whether the video is played
+forward or in reverse simply by viewing the video and observing the
+movement of the ball between the urns.  The distribution of the balls is
+stationary, or in physical terms, in equilibrium.  That is, a ball is as
+likely to move from urn A to urn B in forward time, or from urn B to urn
+A in reverse time. Observing the movement of balls between the urns
+provides no clue about the time direction of the video.
 
 \subsection*{Sources}
 
-The definition of reversibility, the Proposition,  and the
-Reversibility Condition Theorem are adapted from
-\link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
+The definition of reversibility, the Proposition, and the Reversibility
+Condition Theorem are adapted from \link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}
+{Gravner}.
 
-Remarks surrounding the Reversibility Condition Theorem are
-adapted from \link{https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf}{Chen} and
-  \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{Sigman}.
+Remarks surrounding the Reversibility Condition Theorem are adapted from
+\link{https://www.sjsu.edu/faculty/guangliang.chen/Math263/lec5imeReversibility.pdf}
+{Chen} and \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}
+{Sigman}.
 
+Identifying reversibility with the Kolmogorov loop condition is adapted
+from \link{https://digitalcommons.lsu.edu/cgi/viewcontent.cgi?article=1472
+     &context=cosa}{Brill et al.}
+\cite{brill18}.
 
-Identifying reversibility with the Kolmogorov loop condition is
-adapted from
-\link{https://digitalcommons.lsu.edu/cgi/viewcontent.cgi?article=1472&context=cosa}{Brill
-et al.}~\cite{brill18}.
+The example of the negative drift random walk on the non-negative
+integers is adapted from \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}
+{Sigman}.
 
-The example of the negative drift random walk on the non-negative integers is adapted
-from 
-  \link{http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-Time-Reversibility.pdf}{Sigman}.
-
-The example of the random walk on a connected graph is adapted from 
+The example of the random walk on a connected graph is adapted from
 \link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
 
 The problem about the random walk of a king on a checkerboard is
-inspired by a problem in 
-\link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
+inspired by a problem in \link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}
+{Gravner}.
 
 \nocite{}
 \nocite{}
@@ -620,7 +678,7 @@ inspired by a problem in
 
 \subsection*{Scripts}
 
-\input{ _scripts}
+%% \input{ _scripts}
 
 \hr
 
@@ -630,37 +688,38 @@ inspired by a problem in
 \renewcommand{\theexercise}{\arabic{exercise}}
 
 \begin{exercise}
-  Compute the stationary distribution for
-  \[
-    P =
-    \begin{pmatrix}
-      17/40 & 0 & 3/40 & 1/2 \\
-      0     & 11/20 & 1/4 & 1/5 \\
-      3/10  & 1/4   & 9/20 & 0 \\
-      1/2   & 1/20  & 0    & 9/20
-    \end{pmatrix}
-  \]
-  using the detailed balance equations.
+    Compute the stationary distribution for
+    \[
+        P =
+        \begin{pmatrix}
+            17/40       & 0     & 3/40  & 1/2 \\
+            0   & 11/20 & 1/4   & 1/5 \\
+            3/10        & 1/4   & 9/20  & 0 \\
+            1/2 & 1/20  & 0     & 9/20
+        \end{pmatrix}
+    \] using the detailed balance equations.
 \end{exercise}
 \begin{solution}
-  Use the detailed balance to obtain $\pi_1P_{14} = \pi_4P_{41}$ and $\pi_1P_{13} = \pi_3P_{31}$
-and $\pi_3P_{32} = \pi_2P_{23}$ so $\pi_1(1/2) = \pi_4(1/2)$ and $\pi_1(3/40) = \pi_3(3/10)$ and $\pi_3(1/4) = \pi_2(1/4)$.
-Hence $\pi_2 = \pi_3 = 3\pi_1 = 3\pi_4$. Since the sum of the probabilities is $1$,
-$\pi_1 = \pi_4 = 3/8$ and $\pi_2 = \pi_3 = 1/8$.
+    Use the detailed balance to obtain \( \pi_1P_{14} = \pi_4P_{41} \)
+    and \( \pi_1P_{13} = \pi_3P_{31} \) and \( \pi_3P_{32} = \pi_2P_{23}
+    \) so \( \pi_1(1/2) = \pi_4(1/2) \) and \( \pi_1(3/40) = \pi_3(3/10)
+    \) and \( \pi_3(1/4) = \pi_2(1/4) \). Hence \( \pi_2 = \pi_3 = 3\pi_1
+    = 3\pi_4 \).  Since the sum of the probabilities is \( 1 \), \( \pi_1
+    = \pi_4 = 3/8 \) and \( \pi_2 = \pi_3 = 1/8 \).
 \end{solution}
 
 \begin{exercise}
-    Consider the $3 \times 3$ square lattice graph in
-  Figure~\ref{fig:reversiblemarkovchain:sqlattice}. The graph has $9$
-  vertices with $10$ edges between nearest lattice neighbors and
-  self-loops at each vertex.  If a
-  vertex has $n$ edges then the probability of moving to a neighboring
-  edge or staying at the vertex is  $\frac{1}{n+1}$ uniformly.
-  Find the stationary distribution for the random walk on this graph.
-  
-  \begin{figure}
-  \centering
-  \begin{asy}
+    Consider the \( 3 \times 3 \) square lattice graph in Figure~%
+    \ref{fig:reversiblemarkovchain:sqlattice}.  The graph has \( 9 \)
+    vertices with \( 10 \) edges between nearest lattice neighbors and
+    self-loops at each vertex.  If a vertex has \( n \) edges then the
+    probability of moving to a neighboring edge or staying at the vertex
+    is \( \frac{1}{n+1} \) uniformly. Find the stationary distribution
+    for the random walk on this graph.
+
+    \begin{figure}
+        \centering
+\begin{asy}
 size(5inches);
 
 real myfontsize = 12;
@@ -726,53 +785,60 @@ add(new void(picture pic, transform t) {
     draw(pic, point(state8,E,t)--point(state9,W,t));
 });
 \end{asy}
-  \caption{A $3 \times 3$ square lattice graph with uniform transition
-    probabilities.}
-  \label{fig:standardexamples:sqlattice}
-\end{figure}
+        \caption{A \( 3 \times 3 \) square lattice graph with uniform
+        transition probabilities.}%
+        \label{fig:standardexamples:sqlattice}
+    \end{figure}
 \end{exercise}
 \begin{solution}
     This Markov chain has a stationary distribution
-  \[ \pi = (\frac{1}{11}, \frac{4}{33}, \frac{1}{11}, \frac{4}{33},
-    \frac{5}{33}, \frac{4}{33}, \frac{1}{11}, \frac{4}{33}, \frac{1}{11}).
-  \]
+    \[
+        \pi = (\frac{1}{11}, \frac{4}{33}, \frac{1}{11}, \frac{4}{33},
+        \frac{5}{33}, \frac{4}{33}, \frac{1}{11}, \frac{4}{33}, \frac{1}
+        {11}).
+    \]
 \end{solution}
 
 \begin{exercise}
-  In the game of Checkers, a ``king'' can move from a black
-  square to any adjacent black square on an $8 \times 8$ square array
-  colored alternately red and black.
-    \begin{enumerate}[label=(\alpha*)]
-  \item Assuming
- the king starts at one of the four corner squares of the chessboard, compute the expected
-number of steps before it returns to the starting position. 
-\item  Now assume two kings 
-start at opposite corner squares, and move independently (and may
-occupy the same square). What is now the expected number of
-steps before they simultaneously occupy their starting positions? 
-  \end{enumerate}
+    In the game of Checkers, a ``king'' can move from a black square to
+    any adjacent black square on an \( 8 \times 8 \) square array
+    colored alternately red and black.
+    \begin{enumerate}
+    \item
+        Assuming the king starts at one of the two corner squares of
+        the chessboard, compute the expected number of steps before it
+        returns to the starting position.
+    \item
+        Now assume two kings start at opposite corner squares, and move
+        independently (and may occupy the same square).  What is now the
+        expected number of steps before they simultaneously occupy their
+        starting positions?
+\end{enumerate}
 \end{exercise}
 \begin{solution}
-  \begin{enumerate}[label=(\alpha*)]
-  \item The king makes a random walk on a graph with $32$ vertices (the
-    black squares) with degrees $1$ on $2$ corner squares, $2$ on
- $12$ side squares, and $4$ on $18$ interior squares. For a corner
- square $i$, $\pi_i = \frac{1}{1 \cdot 2+ 2 \cdot 12 + 4 \cdot 18} = \frac{1}{98}$
-so the answer is $98$.
-\item Since the walks are independent processes, the number of steps
-  is $98$.
-  \end{enumerate}
+    \begin{enumerate}
+    \item
+        The king makes a random walk on a graph with \( 32 \) vertices (the
+        black squares) with degrees \( 1 \) on \( 2 \) corner squares, \(
+        2 \) on \( 12 \) side squares, and \( 4 \) on \( 18 \) interior
+        squares.  For a corner square \( i \), \( \pi_i = \frac{1}{1
+        \cdot 2+ 2 \cdot 12 + 4 \cdot 18} = \frac{1}{98} \) so the
+        answer is \( 98 \).
+    \item
+        Since the walks are independent processes, the number of steps
+        is \( 98 \).
+\end{enumerate}
 \end{solution}
 
 \begin{exercise}
-Show that if there is a state which can be accessed from every other state in exactly 1 step
-(i.e.\ a column of the transition matrix with no zero entries), then
-for the Kolmogorov loop criterion it is sufficient to
-check loops of only three states. (However, it is possible that no
-such state exists.)
+    Show that if there is a state which can be accessed from every other
+    state in exactly 1 step (i.e.\ a column of the transition matrix
+    with no zero entries), then for the Kolmogorov loop criterion it is
+    sufficient to check loops of only three states.  (However, it is
+    possible that no such state exists.)
 \end{exercise}
 \begin{solution}
-  
+
 \end{solution}
 \hr
 
@@ -782,9 +848,9 @@ such state exists.)
 \bibliography{../../../../CommonInformation/bibliography}
 
 %   \begin{enumerate}
-%     \item 
-%     \item 
-%     \item 
+%     \item
+%     \item
+%     \item
 %   \end{enumerate}
 
 \hr
@@ -792,14 +858,13 @@ such state exists.)
 \visual{Links}{../../../../CommonInformation/Lessons/chainlink.png}
 \section*{Outside Readings and Links:}
 \begin{enumerate}
-  \item  
-  \item  
-  \item  
-  \item 
+    \item
+    \item
+    \item
+    \item
 \end{enumerate}
 
-\section*{\solutionsname}
-\loadSolutions
+\section*{\solutionsname} \loadSolutions
 
 \hr
 
