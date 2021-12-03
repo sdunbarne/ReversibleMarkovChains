@@ -38,15 +38,42 @@ Mathematically Mature: may contain mathematics beyond calculus with proofs.
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Starter Question}
 
+Imagine a video is made of the Ehrenfest urn model started in its
+stationary distribution.  Would it be possible to distinguish whether
+the video is played forward or in reverse simply by viewing the video
+and observing the movement of the ball between the urns?
+
 \hr
 
 \visual{Key Concepts}{../../../../CommonInformation/Lessons/keyconcepts.png}
 \section*{Key Concepts}
 
 \begin{enumerate}
-  \item 
-  \item 
-  \item 
+  \item   A Markov chain with invariant distribution $\pi$ is reversible if
+  and only if there is a probability distribution $\pi$ such that
+  \[
+    \pi_i P_{ij} = \pi_j P_{ji}
+  \]
+  for all $i$ and $j$ and $\pi$ is the unique stationary distribution.
+  \item   The condition says
+  \[
+    \Prob{X_n =i, X_{n+1} = j} = \Prob{X_n =j, X_{n+1} = i}
+  \]
+  so the chain transitions from $i$ to $j$ as often as it transitions
+  from $j$ to $i$.
+  \item   Assume the Markov chain is irreducible and positive recurrent and
+  there is a distribution $\pi$ satisfying the detailed balance equation
+  \[
+    \pi_i P_{ij} = \pi_j P_{ji}.
+  \]
+  Then the distribution $pi$ is the stationary distribution of the chain.
+  and the chain is reversible.
+\item   Let $P$ be a $k \times k$ transition matrix to which an
+  Algorithm of row and column operations
+  is applied, resulting in $P^{\star}$.  Then $P$ is reversible if and
+  only if $\P^{\star}$ is symmetric.
+  \end{enumerate}
+
 \end{enumerate}
 
 \hr
@@ -59,6 +86,11 @@ distribution $\pi$. Recall that this means that $X_0$ has distribution
 $\pi$, and all other $X_n$ have distribution $\pi$ as well.
 Now suppose that, for every $n$, $X_1, X_2, \dots , X_n$ have the same joint distribution as the time-reversal
 $X_n, X_{n−1}, \dots , X_1$.
+\item   The condition
+  \[
+    \pi_i P_{ij} = \pi_j P_{ji}
+  \]
+  is the \defn{detailed balance equation}.
 \item  \defn{Kolmogorov's loop criterion} is
   \[
   P_{j_0 j_1} P_{j_1,j_2} \cdots P_{j_{k-1} j_k} P_{j_k, j_0} =
@@ -85,6 +117,8 @@ for every finite sequence of distinct state $j_0, j_1, \dots, j_k$.
 \visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
 \section*{Mathematical Ideas}
 \subsection*{Reversibility}
+
+\subsubsection*{Detailed Balance Equations}
 
 Assume $X$ is an irreducible and positive recurrent chain, started at its unique invariant
 distribution $\pi$. Recall that this means that $X_0$ has distribution
@@ -137,8 +171,9 @@ help find $\pi$.
   \[
     \pi_i P_{ij} = \pi_j P_{ji}
   \]
-  is called the \emph{detailed balance equation}.
+  is the \defn{detailed balance equation}.
 \end{remark}
+
 \begin{proof}
   \begin{description}
   \item[$\Rightarrow$] The condition follows immediately from the
@@ -188,6 +223,8 @@ entries of an ergodic chain are nonzero.
   Since the chains is irreducible and positive recurrent, then $\pi$
   must be the unique stationary distribution.
 \end{proof}
+
+\subsubsection*{Kolmogorov's loop criterion}
 
 Say that a transition probability matrix is
 \emph{reversible}\index{reversible matrix} if the
@@ -542,9 +579,18 @@ See the exercises.
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
 
+It should not be possible to distinguish whether
+the video is played forward or in reverse simply by viewing the video
+and observing the movement of the ball between the urns.  The
+distribution of the balls is stationary, or in physical terms, in
+equilibrium.  That is, a ball is as likely to move from urn A to
+urn B in forward time, or from urn B to urn A in reverse time.
+Observing the movement of balls between the urns provides no clue
+about the time direction of the video.
+
 \subsection*{Sources}
 
-The definition of reversibility, the Proposition,  the
+The definition of reversibility, the Proposition,  and the
 Reversibility Condition Theorem are adapted from
 \link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
 
@@ -565,6 +611,9 @@ from
 The example of the random walk on a connected graph is adapted from 
 \link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
 
+The problem about the random walk of a king on a checkerboard is
+inspired by a problem in 
+\link{https://www.math.ucdavis.edu/~gravner/MAT135B/materials/ch16.pdf}{Gravner}.
 
 \nocite{}
 \nocite{}
@@ -608,13 +657,117 @@ $\pi_1 = \pi_4 = 3/8$ and $\pi_2 = \pi_3 = 1/8$.
 \end{solution}
 
 \begin{exercise}
-  \begin{enumerate}[label=(\alpha*)]
-  \item 
+    Consider the $3 \times 3$ square lattice graph in
+  Figure~\ref{fig:reversiblemarkovchain:sqlattice}. The graph has $9$
+  vertices with $10$ edges between nearest lattice neighbors and
+  self-loops at each vertex.  If a
+  vertex has $n$ edges then the probability of moving to a neighboring
+  edge or staying at the vertex is  $\frac{1}{n+1}$ uniformly.
+  Find the stationary distribution for the random walk on this graph.
+  
+  \begin{figure}
+  \centering
+  \begin{asy}
+size(5inches);
+
+real myfontsize = 12;
+real mylineskip = 1.2*myfontsize;
+pen mypen = fontsize(myfontsize, mylineskip);
+defaultpen(mypen);
+
+real marge=1mm;
+pair z1=(0, 2), z2=(1, 2), z3=(2, 2);
+pair z4=(0, 1), z5=(1, 1), z6=(2, 1);
+pair z7=(0, 0), z8=(1, 0), z9=(2, 0);
+
+transform r=scale(1.0);
+
+object state1=draw("1",ellipse,z1,marge),
+state2=draw("2",ellipse,z2,marge),
+state3=draw("3",ellipse,z3,marge),
+state4=draw("4",ellipse,z4,marge),
+state5=draw("5",ellipse,z5,marge),
+state6=draw("6",ellipse,z6,marge),
+state7=draw("7",ellipse,z7,marge),
+state8=draw("8",ellipse,z8,marge),
+state9=draw("9",ellipse,z9,marge);
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state1,E,t)--point(state2,W,t));
+    draw(pic, point(state1,S,t)--point(state4,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state2,E,t)--point(state3,W,t));
+    draw(pic, point(state2,S,t)--point(state5,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state3,S,t)--point(state6,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state4,E,t)--point(state5,W,t));
+    draw(pic, point(state4,S,t)--point(state7,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state5,E,t)--point(state6,W,t));
+    draw(pic, point(state5,S,t)--point(state8,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state5,E,t)--point(state6,W,t));
+    draw(pic, point(state5,S,t)--point(state8,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state6,S,t)--point(state9,N,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state7,E,t)--point(state8,W,t));
+});
+
+add(new void(picture pic, transform t) {
+    draw(pic, point(state8,E,t)--point(state9,W,t));
+});
+\end{asy}
+  \caption{A $3 \times 3$ square lattice graph with uniform transition
+    probabilities.}
+  \label{fig:standardexamples:sqlattice}
+\end{figure}
+\end{exercise}
+\begin{solution}
+    This Markov chain has a stationary distribution
+  \[ \pi = (\frac{1}{11}, \frac{4}{33}, \frac{1}{11}, \frac{4}{33},
+    \frac{5}{33}, \frac{4}{33}, \frac{1}{11}, \frac{4}{33}, \frac{1}{11}).
+  \]
+\end{solution}
+
+\begin{exercise}
+  In the game of Checkers, a ``king'' can move from a black
+  square to any adjacent black square on an $8 \times 8$ square array
+  colored alternately red and black.
+    \begin{enumerate}[label=(\alpha*)]
+  \item Assuming
+that the king starts at one of the four corner squares of the chessboard, compute the expected
+number of steps before it returns to the starting position. 
+\item  Now assume two kings 
+start at opposite corner squares, and move independently (and may
+occupy the same square). What is now the expected number of
+steps before they simultaneously occupy their starting positions? 
   \end{enumerate}
 \end{exercise}
 \begin{solution}
   \begin{enumerate}[label=(\alpha*)]
-  \item 
+  \item The king makes a random walk on a graph with $32$ vertices (the
+    black squares) and degrees $1$ on $2$ corner squares), $2$ on
+ $12$ side squares), and $4$ on $18$ interior squares. For a corner
+ square $i$, $\pi_i = \frac{1}{1 \cdot 2+ 2 \cdot 12 + 4 \cdot 18} = \frac{1}{98}$
+so the answer is $98$.
+\item Since the walks are independent processes, the number of steps
+  is $98$.
   \end{enumerate}
 \end{solution}
 
