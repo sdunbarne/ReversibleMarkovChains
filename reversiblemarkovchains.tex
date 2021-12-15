@@ -371,29 +371,33 @@ If the matrix \( P \) is an \( n \times n \) probability transition
 matrix, then a sequence of at most \( n - 1 \) row or column
 multiplication operations will be sufficient to determine whether or not
 \( P \) is reversible or not.
-\begin{enumerate}
-    \item
-    \item
-        Pick two nonzero symmetric positions in \( P \), say \( P_{i_1,i_2}
-        \) and \( P_{i_2,i_1} \).  Let \( S_1 = \set{i_1, i_2} \).  If \(
-        P_{i_1,i_2} = P_{i_2,i_1} \), move to the next step.  Otherwise,
-        assume \( P_{i_1,i_2 }< P_{i_2,i_1} \). Multiply row \( i_2 \)
-        by \( P_{i_1,i_2}/P_{i_2,i_1} \) and adjust \( P_{i_2,i_2} \) to
-        make the row sum to \( 1 \).  If \( P_{i_1,i_2} > P_{i_2,i_1} \),
-        multiply column \( i_2 \) by \( P_{i_2,i_1}/P_{i_1,i_2} \) and
-        adjust all diagonal entries so the rows sum to \( 1 \).  The new
+\begin{algorithm}[H]
+  \KwData{Probability transition matrix \( P \)}
+  \KwResult{Symmetric matrix \( P^{\star}}
+  \Repeat{There are no more states left to add}{
+    Pick two nonzero symmetric positions in \( P \), say \( P_{i_1,i_2}
+    \) and \( P_{i_2,i_1} \).\;
+    \( S_1 \leftarrow \set{i_1, i_2} \).\;
+    \If{ \(P_{i_1,i_2} = P_{i_2,i_1} \)}{move to the next step.}
+    \Else{assume \( P_{i_1,i_2 }< P_{i_2,i_1} \).}
+    Multiply row \( i_2 \) by \( P_{i_1,i_2}/P_{i_2,i_1} \)\;
+    Adjust \( P_{i_2,i_2} \) to make the row sum to \( 1 \).\;
+    \If{ \( P_{i_1,i_2} > P_{i_2,i_1} \)}
+        Multiply column \( i_2 \) by \( P_{i_2,i_1}/P_{i_1,i_2} \);
+        Adjust all diagonal entries so the rows sum to \( 1 \).\;
+        \tcp*[h]{The new
         matrix \( P^{\star} \) will now have \( P_{i_1,i_2} = P_{i_2,i_1}^
-        {\star} \).
-    \item
+        {\star} \).}
+      
         Choose another state \( i_3 \) which has nonzero transition
-        probabilities with a state in \( S_1 \).  Make the appropriate
-        row or column multiplication operation on row or column \( i_3 \).
-        Set \( S_2 = \set{i_1, i_2, i_3} \).
-    \item
-        Repeat the previous with a new state until there are no states
-        left to add.  After \( n - 1 \) steps we have \( S_n = \set{i_1,
-        \dots, i_n}.  Let \)P\( ^{\star} \) be the final matrix.
-\end{enumerate}
+        probabilities with a state in \( S_1 \).\;
+        Make the appropriate
+        row or column multiplication operation on row or column \( i_3 \)\;
+        \( S_2 \leftarrow \set{i_1, i_2, i_3} \).}
+         \tcp*[h]{After \( n - 1 \) steps we have \( S_n = \set{i_1,
+           \dots, i_n}.}
+         Let \( P^{\star} \) be the final matrix.\;
+\end{algorithm}
 
 \begin{theorem}
     Let \( P \) be a \( k \times k \) transition matrix to which the
